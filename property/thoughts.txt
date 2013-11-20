@@ -1,0 +1,5 @@
+
+Initial thoughts on this is should i use some technologies like Laravel, or Zend or use Smarty like in the lecutures
+I have been toying with ember.js I wonder could i use that rather than say bootstrap
+anyhows
+only taking a cursory gander at things
