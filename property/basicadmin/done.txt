@@ -1,0 +1,27 @@
+
+
+SQL Changes
+----------
+Added a Country table - with country id and country name
+Added filed to the products table for country id
+
+PHP Changes
+-----------
+Fix Login code
+Fix Typos
+Clone admin to listproducts.php
+Cline admin to list makers.php 
+Modify Makers for mfs table
+Clone insert.php for insert makers
+modify for makers mfs table
+Modify Header with options ofr List Products, Insert, List Makers, Insert Makers
+create uploads folder make writable 
+fix file uploade
+change list products to show file uploaded
+change file upload to timestamp file
+
+
+To Do
+-----
+Make countrys read into list products table
+

@@ -72,3 +72,34 @@ INSERT INTO `contact` VALUES ('','Anne Wilson', '0860086086');
 INSERT INTO `contact` VALUES ('','John Murray', '0850085085');
 INSERT INTO `contact` VALUES ('','Lisa McCabe', '0860086087');
 INSERT INTO `contact` VALUES ('','Peter Reilly', '0870086087');
+
+
+
+CREATE TABLE `property` (
+  `property_id` int(11) NOT NULL AUTO_INCREMENT,
+  `property_addr1` varchar(35) NOT NULL,
+  `property_addr2` varchar(35) NOT NULL,
+  `property_addr3` varchar(35) NOT NULL,
+  `property_county` int(11) NOT NULL,
+  `property_type` int(5) NOT NULL,
+  `property_price` int(5) NOT NULL,
+  `property_size` int(5) NOT NULL,
+  `property_status` int(5) NOT NULL,
+  `property_contact` int(11) NOT NULL,
+  `property_photo` int(25) NOT NULL,
+  `property_ts` timestamp NOT NULL,
+  PRIMARY KEY (`property_id`)
+);
+
+CREATE TABLE `photos` (
+  `photo_id` int(25) NOT NULL auto_increment,
+  `title` varchar(250) NOT NULL default '',
+  `file_name` varchar(250) NOT NULL default '',
+  `file_type` varchar(15) NOT NULL default '',
+  `file_size` varchar(45) NOT NULL default '',
+  `file_content` longblob NOT NULL,
+  `file_extension` varchar(10) NOT NULL default '',
+  `file_ts` timestamp NOT NULL,
+  `prop_id` int(11) NOT NULL,
+  PRIMARY KEY  (`photo_id`),
+);

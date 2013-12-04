@@ -1,0 +1,72 @@
+<!-- based on script from Xuan Ngo
+Description: Restore MySQL database name called Test.
+              Before you run this script, change the username, password and the path of mysqldump accordingly.
+Usage: Your compressed backup file should be in .../archive_db/Test_YYYY-MM-DD_HH.MM.SS.sql.tar.gz
+        Run
+          ant -f build_restore.xml restore_db -Drestore.dir=Test_YYYY-MM-DD_HH.MM.SS
+-->
+<project basedir="." default="nothing" name="Test">
+ 
+  <!-- Change the following properties accordingly. -->
+  <!-- XAMPP mysql  Windows root and "" -->
+  <!-- MAMP  mysql  Mac root and root -->
+  <!-- XAMPP mysql  Mac root and "" -->
+  <!-- LAMP  mysql  Ubuntu root and "brokenapp" -->
+  <property name="db.username" value="root"/>
+  <property name="db.password" value=""/>
+  <property name="db.name" value="${ant.project.name}"/><!-- The name of the database to backup. -->
+
+  <!-- Windows deployment of mysql -->
+  <property name="mysql" value="C:\wamp\bin\mysql\mysql5.1.33\bin\mysql"/><!-- Path to mysql program. -->
+  <property name="mysqladmin" value="C:\wamp\bin\mysql\mysql5.1.33\bin\mysqladmin"/><!-- Path to mysqladmin program. -->
+ 
+  <property name="archive.dir" value="archive_db"/>
+  <tstamp><format property="DAY_TIME_NOW" pattern="yyyy-MM-dd_HH.mm.ss" /></tstamp>
+ 
+  <target name="nothing">
+    <echo>By default, it does nothing.</echo>
+  </target>
+ 
+  <!-- ***************************************
+  Restore MySQL database 
+  **************************************** -->  
+  <target name="restore_db">
+    <!-- Clean up the database by deleting and then creating it. -->
+    <antcall target="delete_db"/>
+    <antcall target="create_db"/>
+ 
+    <!-- Decompress the backup file. -->
+    <untar dest="." compression="gzip" src="${archive.dir}/${restore.dir}/${restore.dir}.sql.tar.gz"/>
+ 
+    <!-- Import data back to the database from the decompressed backup file. -->
+    <exec executable="${mysql}" input="${restore.dir}.sql">
+      <arg value="--user=${db.username}"/>
+      <arg value="--password=${db.password}"/>
+      <arg value="${db.name}"/>
+    </exec>
+ 
+    <!-- Delete decompressed backup file -->
+    <delete file="${restore.dir}.sql"/>
+  </target>
+ 
+  <target name="delete_db">
+    <exec executable="${mysqladmin}">
+      <arg value="--user=${db.username}"/>
+      <arg value="--password=${db.password}"/>
+      <arg value="--force"/>
+      <arg value="drop"/>
+      <arg value="${db.name}"/>
+    </exec>
+  </target>
+ 
+  <target name="create_db">
+    <exec executable="${mysqladmin}">
+      <arg value="--user=${db.username}"/>
+      <arg value="--password=${db.password}"/>
+      <arg value="--force"/>
+      <arg value="create"/>
+      <arg value="${db.name}"/>
+    </exec>
+  </target>
+ 
+</project>

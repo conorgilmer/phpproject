@@ -1,0 +1,31 @@
+
+<?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert"></button>
+	<strong>Message</strong>
+	<?php echo $flashMessage ?>
+</div>
+
+<?php endif;  ?>
+<form class="form-horizontal" method="post" action="insertmaker.php" enctype="multipart/form-data" >
+	<input type="hidden" name="mf_id"
+		value="<?php echo $product['mf_id']; ?>" />
+	<div class="control-group">
+		<label class="control-label" for="inputproductTitle">Maker</label>
+		<div class="controls">
+			<input type="text" id="inputproductTitle" name="mf_title"
+				placeholder="Title" value="<?php echo $product['mf_title']; ?>">
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="controls">
+
+			<button type="submit" class="btn">
+				<?php echo $buttonLabel ?>
+			</button>
+		</div>
+	</div>
+</form>
+
+
