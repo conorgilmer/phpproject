@@ -1,0 +1,15 @@
+Tasks
+-----
+Well there is some task i will need to do and think about
+Set up github repo (done)
+Set up database - mysql
+Set up Framework - zend?
+Source some Assets
+Initial Plumbing of site
+Dev site
+
+What host to use
+- site101?
+- appwayz?
+- 20dollars one
+Deploy on host
