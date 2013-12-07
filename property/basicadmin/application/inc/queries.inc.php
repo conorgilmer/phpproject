@@ -5,7 +5,7 @@
  */
 function product_listing_get() {
 	
-	$sqlQuery = "SELECT * FROM products";
+	$sqlQuery = "SELECT * FROM property";
 	$result = mysql_query ( $sqlQuery );
 	$records = array ();
 	
@@ -24,7 +24,7 @@ function product_listing_get() {
 function product_listing_get_byid($movie_id) {
 	
 	$movie_id = ( int ) $movie_id;
-	$sqlQuery = "SELECT * FROM products where movie_id=$movie_id";
+	$sqlQuery = "SELECT * FROM prodperty where movie_id=$movie_id";
 	$result = mysql_query ( $sqlQuery );
 	$records = array ();
 	
@@ -55,10 +55,49 @@ function mf_get_all() {
 
 }
 
-
-function country_get_all() {
+function contacts_get_all() {
 	
-	$sqlQuery = "SELECT * FROM country where 1 order by country_id asc";
+	$sqlQuery = "SELECT * FROM contact where 1 order by contact_id asc";
+	$result = mysql_query ( $sqlQuery );
+	$records = array ();
+	
+	if ($result) {
+		while ( $records [] = mysql_fetch_assoc ( $result ) );
+		
+		
+		
+		array_pop ( $records ); // pop the null record which was pushed on as last
+		                     // item
+	}
+	return $records;
+
+}
+
+function counties_get_all() {
+	
+	$sqlQuery = "SELECT * FROM counties where 1 order by county_id asc";
+	$result = mysql_query ( $sqlQuery );
+	$records = array ();
+	
+	if ($result) {
+		while ( $records [] = mysql_fetch_assoc ( $result ) );
+		
+		
+		
+		array_pop ( $records ); // pop the null record which was pushed on as last
+		                     // item
+	}
+	return $records;
+
+}
+
+
+
+
+
+function housetype_get_all() {
+	
+	$sqlQuery = "SELECT * FROM housetype where 1 order by housetype_id asc";
 	$result = mysql_query ( $sqlQuery );
 	$records = array ();
 	

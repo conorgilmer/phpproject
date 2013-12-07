@@ -15,10 +15,10 @@ function validateproduct($product) {
 	
 }
 
-// save a manufacturer
-function getCountry($c_id ) {
+// get the type
+function getHouseType($c_id ) {
 	
-	$sqlQuery = "SELECT country_name from country where country_id = " . $c_id;
+	$sqlQuery = "SELECT housetype_name from housetype where housetype_id = " . $c_id;
 	
 	$result = mysql_query($sqlQuery);
 
@@ -29,7 +29,25 @@ function getCountry($c_id ) {
 	} 
 	//comment in	
         $ret = mysql_fetch_array($result);
-	return $ret['country_name'];
+	return $ret['housetype_name'];
+	
+}
+
+// save a county
+function getCounty($c_id ) {
+	
+	$sqlQuery = "SELECT county_name from counties where county_id = " . $c_id;
+	
+	$result = mysql_query($sqlQuery);
+
+	if (!$result) {
+		echo $sqlQuery;
+		
+		die("error" . mysql_error());
+	} 
+	//comment in	
+        $ret = mysql_fetch_array($result);
+	return $ret['county_name'];
 	
 }
 
@@ -53,10 +71,19 @@ function saveMaker($maker ) {
 // fix typos
 function saveProduct($product ) {
 	//add desc and country 
-	$sqlQuery = "INSERT INTO products (title, description, mf_id,	price,
-	taste, country_id)
-	values ('{$product['title']}','{$product['description']}','{$product['mf_id']}',
-            '{$product['price']}','{$product['taste']}', '{$product['country_id']}')";
+        $ts = date('Y-m-d H:i:s');
+        //$ts = new DateTime();
+        //$ts->getTimestamp();
+        //$ts = DateTime::createFromFormat('!Y-m-d', date('Y-m-d'));
+	$sqlQuery = "INSERT INTO property (property_addr1, 
+property_addr2,property_addr3,property_county, property_type, property_price, 
+property_size,property_status,property_contact, property_photo,
+property_ts
+)
+	values ('{$product['property_addr1']}','{$product['property_addr2']}','{$product['property_addr3']}',
+            '{$product['property_county']}','{$product['property_type']}', '{$product['property_price']}'
+        , '{$product['property_size']}', '{$product['property_status']}', '{$product['property_contact']}'
+            , '{$product['property_photo']}', '{$ts}')";
 	
 	$result = mysql_query($sqlQuery);
 	

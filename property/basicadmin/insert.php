@@ -22,42 +22,50 @@ include (APPLICATION_PATH . "/inc/functions.inc.php");
 include (APPLICATION_PATH . "/inc/queries.inc.php");
 include (APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 $product = array();
-$product['title'] = "";
-$product['description'] = "";
-$product['price'] ="";
-$product['taste'] ="G";
-$product['mf_id'] =0;
-$product['product_id']=0;
-$product['country_id']=0;
-
+$product['property_addr1'] = "";
+$product['property_addr2'] = "";
+$product['property_addr3'] ="";
+$product['property_county'] ="";
+$product['property_type'] ="";
+$product['product_price']="";
+$product['property_size'] ="";
+$product['property_status'] ="";
+$product['product_contact']="";
+$product['property_photo'] ="";
+$product['property_ts'] ="";
+$product['property_id'] =0;
 
 if (!empty($_POST)) {
 	
 	
 	$product = array();
-	$product['title'] = htmlspecialchars(strip_tags($_POST["title"]));
-	$product['description'] = htmlspecialchars(strip_tags($_POST["description"]));
-	$product['price'] = htmlspecialchars(strip_tags($_POST["price"]));
-	$product['taste'] = htmlspecialchars(strip_tags($_POST["taste"]));
-	$product['mf_id'] = (int) htmlspecialchars(strip_tags($_POST["mf_id"]));
-        $product['country_id'] = (int) htmlspecialchars(strip_tags($_POST["country_id"]));
-        $product['filename']  = htmlspecialchars($_FILES['uploadedfile']['name']);
-        $product['product_id'] = isset($_POST["product_id"]) ? (int) $_POST["product_id"] : 0;
-        $product['maxfilesize'] = (int) htmlspecialchars(strip_tags($_POST["MAX_FILE_SIZE"]));
-             
-	$flashMessage = "";
+	$product['property_addr1'] = htmlspecialchars(strip_tags($_POST["addr1"]));
+	$product['property_addr2'] = htmlspecialchars(strip_tags($_POST["addr2"]));
+	$product['property_addr3'] = htmlspecialchars(strip_tags($_POST["addr3"]));
+	$product['property_county'] = (int) htmlspecialchars(strip_tags($_POST["county_id"]));
+	$product['property_type'] = (int) htmlspecialchars(strip_tags($_POST["housetype_id"]));
+        $product['property_price'] = htmlspecialchars(strip_tags($_POST["price"]));
+        $product['property_size']  = htmlspecialchars(strip_tags($_POST["size"]));
+        $product['property_status'] = htmlspecialchars(strip_tags($_POST["status"]));
+        $product['property_contact'] = (int) htmlspecialchars(strip_tags($_POST["contact_id"]));
+	$product['property_photo'] = 0;//(int) htmlspecialchars(strip_tags($_POST["photo_id"]));
+	
+        $product['property_id'] = isset($_POST["property_id"]) ? (int) $_POST["property_id"] : 0;
+        
+        
+        $flashMessage = "";
 	if (validateProduct($product)) {
-		if ($product['product_id'] == 0) {
+		if ($product['property_id'] == 0) {
          //New! Save Movie returns the id of the record inserted         
 		$product_id = saveproduct($product);
-		uploadFiles($product_id);
+		uploadFiles($property_id);
 		
 		
 		$flashMessage = "Record has been saved";
                 } else {
                     //update product record and upload new file
                     updateMovie($product);
-                    uploadFiles($product['product_id']);
+                    uploadFiles($product['property_id']);
 	         //flash record updated
         	    $flashMessage = "Record has been updated";
                 	
@@ -71,7 +79,7 @@ if (!empty($_POST)) {
 ?>
 <?php 
 $activeInsert = "active";
-$buttonLabel = "Insert New Sweets";
+$buttonLabel = "Insert New Property";
 include (TEMPLATE_PATH . "/header.html");
 include (TEMPLATE_PATH . "/form_insert.html");
 include (TEMPLATE_PATH . "/footer.html");

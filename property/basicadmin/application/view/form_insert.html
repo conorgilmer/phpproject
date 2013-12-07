@@ -8,17 +8,30 @@
 
 <?php endif;  ?>
 <form class="form-horizontal" method="post" action="insert.php" enctype="multipart/form-data" >
-	<input type="hidden" name="product_id"
-		value="<?php echo $product['product_id']; ?>" />
+	<input type="hidden" name="property_id"
+		value="<?php echo $product['property_id']; ?>" />
 	<div class="control-group">
-		<label class="control-label" for="inputproductTitle">Product</label>
+		<label class="control-label" for="inputaddr1">Address 1</label>
 		<div class="controls">
-			<input type="text" id="inputproductTitle" name="title"
-				placeholder="Title" value="<?php echo $product['title']; ?>">
+			<input type="text" id="inputaddr1" name="addr1"
+				placeholder="Addr1" value="<?php echo $product['property_addr1']; ?>">
 		</div>
 	</div>
-
 	<div class="control-group">
+		<label class="control-label" for="inputaddr2">Address 2</label>
+		<div class="controls">
+			<input type="text" id="inputaddr2" name="addr2"
+				placeholder="Addr2" value="<?php echo $product['property_addr2']; ?>">
+		</div>
+	</div>
+        	<div class="control-group">
+		<label class="control-label" for="inputaddr3">Address 3</label>
+		<div class="controls">
+			<input type="text" id="inputaddr3" name="addr3"
+				placeholder="Addr1" value="<?php echo $product['property_addr3']; ?>">
+		</div>
+	</div>
+	<!--div class="control-group">
 		<label class="control-label" for="inputproductTitle">Description</label>
 		<div class="controls">
 			<textarea name="description">
@@ -26,74 +39,73 @@
   
   </textarea>
 		</div>
-	</div>
-
-
-	<div class="control-group">
-		<label class="control-label" for="inputproductRunningTime">Price</label>
-		<div class="controls">
-			<input type="text" id="inputPrice" name="price"
-				placeholder="Price"
-				value="<?php echo $product['price']; ?>">
-		</div>
-	</div>
+        </div-->
 
         
 	<div class="control-group">
-		<label class="control-label" for="inputproductTitle">Manufacturer</label>
+		<label class="control-label" for="inputcounty">House Type</label>
 		<div class="controls">
 			<?php 
-				$records = mf_get_all();
-	
+				$records = housetype_get_all();
+	$product['housetype_id'] =0;
 				$arrayItems=array();
 
 				$count = sizeof($records);
 				for($i=0; $i < $count; $i++) {
 
-				$arrayItems[$i]["label"]=$records[$i]['mf_title'];
-				$arrayItems[$i]["id"]=$records[$i]['mf_id'];
+				$arrayItems[$i]["label"]=$records[$i]['housetype_name'];
+				$arrayItems[$i]["id"]=$records[$i]['housetype_id'];
 	
 
 				}
 
 
-echo uihelperSelect('mf_id',$arrayItems,$product['mf_id']) ?>
+echo uihelperSelect('housetype_id',$arrayItems,$product['housetype_id']) ?>
 		</div>
 	</div>
 
-	<div class="control-group">
-		<label class="control-label" for="inputproductCountry">Country</label>
+        	<div class="control-group">
+		<label class="control-label" for="inputproductCountry">County</label>
 		<div class="controls">
 			<?php 
-				$records = country_get_all();
-	
+				$records = counties_get_all();
+	$product['county_id'] = 0;
 				$arrayItems1=array();
 
 				$count = sizeof($records);
 				for($i=0; $i < $count; $i++) {
 
-				$arrayItems1[$i]["label"]=$records[$i]['country_name'];
-				$arrayItems1[$i]["id"]=$records[$i]['country_id'];
+				$arrayItems1[$i]["label"]=$records[$i]['county_name'];
+				$arrayItems1[$i]["id"]=$records[$i]['county_id'];
 	
 
 				}
 
 
-echo uihelperSelect('country_id',$arrayItems1,$product['country_id']) ?>
+echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
 		</div>
 	</div>
 
-
-
-
-<!-- options list moved arrow closing 28/11/13 -->
-	<div class="control-group">
-		<label class="control-label" for="inputproductTitle">Taste</label>
+        
+        
+       	<div class="control-group">
+		<label class="control-label" for="inputprice">Size</label>
 		<div class="controls">
-			<select id="taste" name="taste">
-                            <option value="Sweet"><?php echo output_selected($product['taste'],'Sweet') ?>Sweet</option>
-                            <option value="Savoury"><?php echo output_selected($product['taste'],'Savoury') ?>Savoury</option>
-                                <option value="Sour"><?php echo output_selected($product['taste'],'Sour') ?>Sour</option>
+			<input type="text" id="inputprice" name="size"
+				placeholder="Size" value="<?php echo $product['property_size']; ?>">
+		</div>
+	</div>
+    
+          <div class="control-group">
+		<label class="control-label" for="status">Status</label>
+		<div class="controls">
+	<!--		<input type="text" id="inputstatus" name="status"
+				placeholder="Status" value="<?php echo $product['property_status']; ?>">
+	-->
+			<select id="status" name="status">
+                            <option value="For Sale">For Sale</option>
+                            <option value="Sale Agreed">Sale Agreed</option>
+                            <option value="Sold">Sold</option>
 			
 
 			</select>
@@ -101,17 +113,52 @@ echo uihelperSelect('country_id',$arrayItems1,$product['country_id']) ?>
 	</div>
 
 
+    
+        
+         	<div class="control-group">
+		<label class="control-label" for="inputprice">Price</label>
+		<div class="controls">
+			<input type="text" id="inputprice" name="price"
+				placeholder="Price" value="<?php echo $product['property_price']; ?>">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="inputproductCountry">Agent</label>
+		<div class="controls">
+			<?php 
+				$records = contacts_get_all();
+	$product['contact_id'] = 0;
+				$arrayItems1=array();
+
+				$count = sizeof($records);
+				for($i=0; $i < $count; $i++) {
+
+				$arrayItems1[$i]["label"]=$records[$i]['contact_name'];
+				$arrayItems1[$i]["id"]=$records[$i]['contact_id'];
+	
+
+				}
+
+
+echo uihelperSelect('contact_id',$arrayItems1,$product['contact_id']) ?>
+		</div>
+	</div>
+
+
+
+
+
 <!--  note, you cannot style file upload button, but folllowinglink is useful -->
 <!--  http://www.quirksmode.org/dom/inputfile.html -->
 
-	<div class="control-group">
+	<!--div class="control-group">
 	<label class="control-label" for="inputproductTitle">Upload Image</label>
 		<div class="controls">
 
 			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
 <input name="uploadedfile" type="file" />
 		</div>
-	</div>
+	</div>-->
 	<div class="control-group">
 		<div class="controls">
 
@@ -119,7 +166,7 @@ echo uihelperSelect('country_id',$arrayItems1,$product['country_id']) ?>
 				<?php echo $buttonLabel ?>
 			</button>
 		</div>
-	</div>
+        </div>
 </form>
 
 

@@ -30,7 +30,8 @@ include (TEMPLATE_PATH . "/header.html");
 <div class="container">
 <div class="row">
 <div class="span12">
-<h1>List Products</h1>
+<h1>List of Photos</h1>
+<p>List of Photos.</p>
 </div>
 </div>
 <div clas="row">
@@ -38,7 +39,7 @@ include (TEMPLATE_PATH . "/header.html");
 
 <?php 
 
-$sqlQuery = "SELECT * FROM property";
+$sqlQuery = "SELECT * FROM photos";
 $result = mysql_query($sqlQuery);
 
 
@@ -47,14 +48,10 @@ if ($result) {
 	$htmlString .=  "<table class='table table-bordered table-condensed table-striped' border='1'>\n";
 	
 	$htmlString .= "<tr>";
-	$htmlString .= "<th>ID</th>";
-	$htmlString .= "<th>Address Line 1 </th>";
-	$htmlString .= "<th>Address Line 2</th>";
-	$htmlString .= "<th>Address Line 3</th>";
-        $htmlString .= "<th>County</th>";
-	$htmlString .= "<th>Type</th>";
-        	$htmlString .= "<th>Price</th>";
-                	$htmlString .= "<th>Status</th>";
+	$htmlString .= "<th>PhotoID</th>";
+	$htmlString .= "<th>Photo Name</th>";
+        $htmlString .= "<th>Property ID</th>";
+        
 	$htmlString .= "<th colspan='2'>Actions</th>";
 
 	$htmlString .= "</tr>";
@@ -63,46 +60,23 @@ if ($result) {
 	{
 		$htmlString .=  "<tr>" ;
 		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_id"];
+		$htmlString .=  $product["photo_id"];
 		$htmlString .=  "</td>";
 		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_addr1"];
+		$htmlString .=  $product["file_name"];
 		$htmlString .=  "</td>";
 		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_addr2"];
+		$htmlString .=  $product["prop_id"];
 		$htmlString .=  "</td>";
-		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_addr3"];
-		$htmlString .=  "</td>";
-		$htmlString .=  "<td>";
-		$htmlString .=  getCounty($product["property_county"]);//$product["property_county"];
-		$htmlString .=  "</td>";
-                
-		$htmlString .=  "<td>";
-		$htmlString .=  getHouseType($product["property_type"]);
-		$htmlString .=  "</td>";
-                
-		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_price"];
-		$htmlString .=  "</td>";
-		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_status"];
-		$htmlString .=  "</td>";
-//		$htmlString .=  "<td><a target=\"_blank\" href=\"http://".UPLOAD_PATH;
-		//$htmlString .=  "<td><a target=\"_blank\" href=\"uploads/";
-             //   $htmlString .=  $product["imagefile"];
-	//	$htmlString .=  "\">".$product["imagefile"]."</a></td>";
-	//	$htmlString .=  "<td>";
-	//	$htmlString .=  getCountry($product["country_id"]);
-	//	$htmlString .=  "</td>";
+		
 		
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_edit_link($product["property_id"]);
+		$htmlString .=  output_edit_link($product["photo_id"]);
 		$htmlString .=  "</td>";
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_delete_link($product["property_id"]);
+		$htmlString .=  output_delete_link($product["photo_id"]);
 		$htmlString .=  "</td>";
 		
 		

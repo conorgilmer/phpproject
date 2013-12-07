@@ -30,8 +30,8 @@ include (TEMPLATE_PATH . "/header.html");
 <div class="container">
 <div class="row">
 <div class="span12">
-<h1>Administration</h1>
-<p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+<h1>House type</h1>
+<p>List of Accommodation Types.</p>
 </div>
 </div>
 <div clas="row">
