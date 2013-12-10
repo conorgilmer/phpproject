@@ -1,0 +1,62 @@
+
+<?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert"></button>
+	<strong>Message</strong>
+	<?php echo $flashMessage ?>
+</div>
+
+<?php endif;  ?>
+<form class="form-horizontal" method="post" action="insertphoto.php" enctype="multipart/form-data" >
+	<input type="hidden" name="mf_id"
+		value="<?php echo $photo['photo_id']; ?>" />
+	<div class="control-group">
+		<label class="control-label" for="inputfileTitle">Title:</label>
+		<div class="controls">
+			<input type="text" id="inputphotoTitle" name="photo_title"
+				placeholder="Title" value="<?php echo $photo['photo_title']; ?>">
+		</div>
+	</div>
+        <div class="control-group">
+	<label class="control-label" for="inputphotoTitle">Upload Image</label>
+		<div class="controls">
+
+			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+<input name="file" type="file" />
+		</div>
+	</div>
+        
+        <div class="control-group">
+		<label class="control-label" for="inputfileTitle">Property:</label>
+		<div class="controls">
+			<input type="text" id="inputpropID" name="prop_id"
+				placeholder="Property ID" value="<?php echo $photo['prop_id']; ?>">
+		</div>
+	</div>
+        
+        
+
+	<div class="control-group">
+		<div class="controls">
+
+			<button type="submit" class="btn">
+				<?php echo $buttonLabel ?>
+			</button>
+		</div>
+	</div>
+</form>
+
+<!--form action="<?=$PHP_SELF;?>" method="POST" enctype="multipart/form-data" name="upload_form" id="upload_form">
+    <label>Title:</label><input name="title" type="text" id="title" value="<?=htmlentities(stripslashes($_POST['title']));?>" size="35">
+    <label>File:</label><input type="file" name="file">    
+    <input name="action" type="hidden" id="action" value="add_document">
+</form>
+
+<div class="control-group">
+	<label class="control-label" for="inputproductTitle">Upload Image</label>
+		<div class="controls">
+
+			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+<input name="uploadedfile" type="file" />
+		</div>
+	</div-->

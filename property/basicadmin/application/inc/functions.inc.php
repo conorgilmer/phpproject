@@ -201,6 +201,19 @@ function deleteMovie($id) {
 }
 
 
+// delete product 
+function deletePhoto($id) {
+    $pID = (int) $id;
+    $sqlQuery = "DELETE FROM photos where photo_id = $pID";
+    
+    $result = mysql_query($sqlQuery);
+    if (!$result) {
+		die("error" . mysql_error());
+        }
+}
+
+
+
 
 function retrieveMovie($id) {
 
@@ -255,6 +268,20 @@ function output_delete_link($id) {
 
 
 }
+
+
+function output_edit_photo_link($id) {
+	
+	return "<a href='editphoto.php?id=$id'>Edit</a>";
+	
+	
+}
+function output_delete_photo_link($id) {
+
+	return "<a href='deletephoto.php?pid=$id'>Delete</a>";
+
+}
+
 
 
 function output_edit_maker_link($id) {

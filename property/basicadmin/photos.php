@@ -60,7 +60,7 @@ if ($result) {
 	{
 		$htmlString .=  "<tr>" ;
 		$htmlString .=  "<td>";
-		$htmlString .=  $product["photo_id"];
+		$htmlString .=  "<a href=\"showphoto.php?photo_id=".$product["photo_id"]." \">". $product['photo_id']."</a>";
 		$htmlString .=  "</td>";
 		$htmlString .=  "<td>";
 		$htmlString .=  $product["file_name"];
@@ -72,11 +72,11 @@ if ($result) {
 		
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_edit_link($product["photo_id"]);
+		$htmlString .=  output_edit_photo_link($product["photo_id"]);
 		$htmlString .=  "</td>";
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_delete_link($product["photo_id"]);
+		$htmlString .=  output_delete_photo_link($product["photo_id"]);
 		$htmlString .=  "</td>";
 		
 		
