@@ -5,12 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DSA Movies</title>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
+<!--script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script-->  
 <script type="text/javascript" src="js/movies.js"></script>  
   
 
  <!-- Bootstrap -->
-<link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
+
+
+<link rel="stylesheet" href="library/bootstrap3/css/bootstrap.css" type="text/css"/>
+<link rel="stylesheet" href="../../library/bootstrap3/css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="../../library/bootstrap3/css/bootstrap.min.css" type="text/css"/>
+
+
+<script src="library/bootstrap3/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 
 <style>  
 /* Simple styling for the div that will hold our content */  
@@ -34,22 +45,20 @@
 </head>
 <body>
 
- <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Confectionary Listing</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="<?php echo $activeHome ?>"><a href="admin.php">Home</a></li>
-            
-             <li  class=""><a href="login.php">Login</a></li> 
+ <nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Property Admin</a>
+  </div><!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="login.php">Login</a></li> 
             </ul>
           </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+    
