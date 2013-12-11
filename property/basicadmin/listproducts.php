@@ -30,7 +30,7 @@ include (TEMPLATE_PATH . "/header.html");
 <div class="container">
 <div class="row">
 <div class="span12">
-<h1>List Products</h1>
+<h1>List Properties</h1>
 </div>
 </div>
 <div clas="row">

@@ -58,14 +58,14 @@ if (!empty($_POST)) {
 		if ($product['property_id'] == 0) {
          //New! Save Movie returns the id of the record inserted         
 		$product_id = saveproduct($product);
-		uploadFiles($property_id);
+		//uploadFiles($property_id);
 		
 		
 		$flashMessage = "Record has been saved";
                 } else {
                     //update product record and upload new file
                     updateMovie($product);
-                    uploadFiles($product['property_id']);
+                   // uploadFiles($product['property_id']);
 	         //flash record updated
         	    $flashMessage = "Record has been updated";
                 	

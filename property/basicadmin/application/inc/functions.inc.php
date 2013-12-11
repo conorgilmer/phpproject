@@ -191,8 +191,8 @@ function updateMaker($product) {
 
 // delete product 
 function deleteMovie($id) {
-    $productID = (int) $id;
-    $sqlQuery = "DELETE FROM products where product_id = $productID";
+    $pID = (int) $id;
+    $sqlQuery = "DELETE FROM property where property_id = $pID";
     
     $result = mysql_query($sqlQuery);
     if (!$result) {
