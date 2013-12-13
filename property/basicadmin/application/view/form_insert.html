@@ -7,6 +7,9 @@
 </div>
 
 <?php endif;  ?>
+<div class="container">
+  <div class="row">
+    <div class="offset4 span4">
 <form class="form-horizontal" method="post" action="insert.php" enctype="multipart/form-data" >
 	<input type="hidden" name="property_id"
 		value="<?php echo $product['property_id']; ?>" />
@@ -65,7 +68,7 @@ echo uihelperSelect('housetype_id',$arrayItems,$product['housetype_id']) ?>
 	</div>
 
         	<div class="control-group">
-		<label class="control-label" for="inputproductCountry">County</label>
+		<label class="control-label" for="County">County</label>
 		<div class="controls">
 			<?php 
 				$records = counties_get_all();
@@ -99,8 +102,8 @@ echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
           <div class="control-group">
 		<label class="control-label" for="status">Status</label>
 		<div class="controls">
-			<input type="text" id="inputstatus" name="status"
-				placeholder="Status" value="<?php echo $property['property_status']; ?>">
+			<!--input type="text" id="inputstatus" name="status"
+				placeholder="Status" value="<?php echo $property['property_status']; ?>"-->
 	
 			<select id="status" name="status">
                             <option value="For Sale">For Sale</option>
@@ -169,4 +172,6 @@ echo uihelperSelect('contact_id',$arrayItems1,$product['contact_id']) ?>
         </div>
 </form>
 
-
+    </div>
+  </div>
+</div>

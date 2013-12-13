@@ -7,14 +7,18 @@
 </div>
 
 <?php endif;  ?>
+<div class="container">
+  <div class="row">
+    <div class="offset4 span4">
+
 <form class="form-horizontal" method="post" action="insertphoto.php" enctype="multipart/form-data" >
-	<input type="hidden" name="mf_id"
+	<input type="hidden" name="photo_id"
 		value="<?php echo $photo['photo_id']; ?>" />
 	<div class="control-group">
 		<label class="control-label" for="inputfileTitle">Title:</label>
 		<div class="controls">
 			<input type="text" id="inputphotoTitle" name="photo_title"
-				placeholder="Title" value="<?php echo $photo['photo_title']; ?>">
+                               placeholder="Title" value=""><!--?php echo $photo['photo_title']; ?>"-->
 		</div>
 	</div>
         <div class="control-group">
@@ -30,7 +34,7 @@
 		<label class="control-label" for="inputfileTitle">Property:</label>
 		<div class="controls">
 			<input type="text" id="inputpropID" name="prop_id"
-				placeholder="Property ID" value="<?php echo $photo['prop_id']; ?>">
+                               placeholder="Property ID" value=""><!--?php echo $photo['prop_id']; ?>"-->
 		</div>
 	</div>
         
@@ -45,6 +49,9 @@
 		</div>
 	</div>
 </form>
+    </div>
+  </div>
+</div>
 
 <!--form action="<?=$PHP_SELF;?>" method="POST" enctype="multipart/form-data" name="upload_form" id="upload_form">
     <label>Title:</label><input name="title" type="text" id="title" value="<?=htmlentities(stripslashes($_POST['title']));?>" size="35">
