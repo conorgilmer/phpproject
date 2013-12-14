@@ -30,13 +30,35 @@
 		</div>
 	</div>
         
-        <div class="control-group">
+        <!--div class="control-group">
 		<label class="control-label" for="inputfileTitle">Property:</label>
 		<div class="controls">
 			<input type="text" id="inputpropID" name="prop_id"
                                placeholder="Property ID" value=""><!--?php echo $photo['prop_id']; ?>"-->
+		<!--/div>
+	</div>
+        <div class="control-group"-->
+		<label class="control-label" for="inputpictureplace">Property:</label>
+		<div class="controls">
+			<?php 
+				$records = properties_get_all();
+	$product['property_id'] = 0;
+				$arrayItems1=array();
+
+				$count = sizeof($records);
+				for($i=0; $i < $count; $i++) {
+
+				$arrayItems1[$i]["label"]=$records[$i]['property_id'];
+				$arrayItems1[$i]["id"]=$records[$i]['property_id'];
+	
+
+				}
+
+
+echo uihelperSelect('prop_id',$arrayItems1,$product['property_id']) ?>
 		</div>
 	</div>
+        
         
         
 

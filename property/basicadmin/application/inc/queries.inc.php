@@ -55,6 +55,25 @@ function mf_get_all() {
 
 }
 
+function properties_get_all() {
+	
+	$sqlQuery = "SELECT * FROM property where 1 order by property_id asc";
+	$result = mysql_query ( $sqlQuery );
+	$records = array ();
+	
+	if ($result) {
+		while ( $records [] = mysql_fetch_assoc ( $result ) );
+		
+		
+		
+		array_pop ( $records ); // pop the null record which was pushed on as last
+		                     // item
+	}
+	return $records;
+
+}
+
+
 function contacts_get_all() {
 	
 	$sqlQuery = "SELECT * FROM contact where 1 order by contact_id asc";
