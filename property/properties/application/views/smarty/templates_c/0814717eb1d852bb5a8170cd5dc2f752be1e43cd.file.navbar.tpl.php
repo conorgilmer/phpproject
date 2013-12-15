@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-12-14 22:13:50
+<?php /* Smarty version Smarty-3.1.15, created on 2013-12-15 06:29:22
          compiled from "/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/navbar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:142733320352acca0eae7550-07329226%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0814717eb1d852bb5a8170cd5dc2f752be1e43cd' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/navbar.tpl',
-      1 => 1387054989,
+      1 => 1387085358,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'variables' => 
-  array (
-    'loggedIn' => 0,
-    'urlAction' => 0,
-  ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
   'unifunc' => 'content_52acca0eafae00_46604683',
+  'variables' => 
+  array (
+    'urlAction' => 0,
+    'loggedIn' => 0,
+  ),
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52acca0eafae00_46604683')) {function content_52acca0eafae00_46604683($_smarty_tpl) {?> <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -38,22 +38,30 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
+=listproperties">List Properties</a></li>
+           
              <?php if ($_smarty_tpl->tpl_vars['loggedIn']->value==true) {?> 
-            <li><a href="logout.php">Logout</a></li>
+            <!--li><a href="logout.php">Logout</a></li-->
           
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
-=createmovies">Create Movies</a></li>
+=createmovies">Create Property</a></li>
                 <li><a href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
-=listmovies">List Movies</a></li>
-                <li><a href="#">Something else here</a></li>
+=listphotos">List Photos</a></li>
+                <li><a href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
+=listcontacts">List Agents</a></li>
+                <li><a href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
+=listcounties">List Counties</a></li>
+                <li><a href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
+=listhousetype">List House Type</a></li>
+               
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
+                <li class="dropdown-header">Account Admin</li>
+               <li><a href="logout.php">Logout</a></li>
+          </ul>
             </li>
           </ul>
           <?php }?>

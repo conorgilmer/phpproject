@@ -12,20 +12,24 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="{$urlAction}=listproperties">List Properties</a></li>
+           
              {if $loggedIn==true} 
-            <li><a href="logout.php">Logout</a></li>
+            <!--li><a href="logout.php">Logout</a></li-->
           
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{$urlAction}=createmovies">Create Movies</a></li>
-                <li><a href="{$urlAction}=listmovies">List Movies</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="{$urlAction}=createproperty">Create Property</a></li>
+                <li><a href="{$urlAction}=listphotos">List Photos</a></li>
+                <li><a href="{$urlAction}=listcontacts">List Agents</a></li>
+                <li><a href="{$urlAction}=listcounties">List Counties</a></li>
+                <li><a href="{$urlAction}=listhousetype">List House Type</a></li>
+               
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
+                <li class="dropdown-header">Account Admin</li>
+               <li><a href="logout.php">Logout</a></li>
+          </ul>
             </li>
           </ul>
           {/if}

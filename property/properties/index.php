@@ -42,13 +42,13 @@ session_start();
    // die($pageAction);
     switch($pageAction) {
         
-        case 'createmovies':
+        case 'createproperty':
             //die('loading here $pageAction');
-            $row['movie_id']=0;
-            $row['title']='';
+            $row['property_id']=0;
+            $row['property_addr1']='';
             $smarty->assign('row',$row);
             $smarty->assign('page','page_1.tpl');
-            $smarty->assign('pageTitle','DSA Move Home Page');
+            $smarty->assign('pageTitle','Property Page');
            
             break;
         
@@ -64,6 +64,43 @@ session_start();
             $smarty->assign('pageTitle','DSA Edit Movie');
            
             break;
+   
+               case 'listproperties':
+                $dbTable = new Zend_Db_Table('property');
+                $rows = $dbTable->fetchAll();
+                $smarty->assign('rows',$rows);
+                $smarty->assign('page','listproperties.tpl');
+                $smarty->assign('pageTitle','List of Accommodation');
+           
+            break;
+        
+          case 'listphotos':
+                $dbTable = new Zend_Db_Table('photos');
+                $rows = $dbTable->fetchAll();
+                $smarty->assign('rows',$rows);
+                $smarty->assign('page','listphotos.tpl');
+                $smarty->assign('pageTitle','Photographs of Accommodation');
+           
+            break;
+               
+          case 'listhousetype':
+                $dbTable = new Zend_Db_Table('housetype');
+                $rows = $dbTable->fetchAll();
+                $smarty->assign('rows',$rows);
+                $smarty->assign('page','listhousetype.tpl');
+                $smarty->assign('pageTitle','House Type Categories');
+           
+            break;
+          
+          case 'listcounties':
+                $dbTable = new Zend_Db_Table('counties');
+                $rows = $dbTable->fetchAll();
+                $smarty->assign('rows',$rows);
+                $smarty->assign('page','listcounties.tpl');
+                $smarty->assign('pageTitle','Areas/Counties Listings');
+           
+            break;
+        
         
           case 'listcontacts':
                 $dbTable = new Zend_Db_Table('contact');
@@ -96,7 +133,7 @@ session_start();
            //die('loading here');
          $smarty->assign('showJumboTron',true);
          $smarty->assign('page','front.tpl');
-         $smarty->assign('pageTitle','DSA Movie Home Page');
+         $smarty->assign('pageTitle','Property Website Home Page');
             
             break;
         

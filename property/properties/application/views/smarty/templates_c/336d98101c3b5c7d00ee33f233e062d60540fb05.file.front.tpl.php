@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-12-14 22:37:02
+<?php /* Smarty version Smarty-3.1.15, created on 2013-12-15 06:20:48
          compiled from "/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/front.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:889431252acca0eb03914-65668410%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '336d98101c3b5c7d00ee33f233e062d60540fb05' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/front.tpl',
-      1 => 1387057019,
+      1 => 1387083953,
       2 => 'file',
     ),
   ),
@@ -26,11 +26,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div class="col-lg-4">
           <h2>List Properties</h2>
           <p>List Properties by Counties. </p>
-          <p><a class="btn btn-default" href="index.php?action=cinemalistings">Property Listings&raquo;</a></p>
+          <p><a class="btn btn-default" href="index.php?action=listcounties">Property Listings&raquo;</a></p>
         </div>
         <div class="col-lg-4">
           <h2>List Agents</h2>
           <p>List Real Estate Agents. </p>
           <p><a class="btn btn-default" href="index.php?action=listcontacts">View Agents &raquo;</a></p>
        </div>
+              <div class="col-lg-4">
+          <h2>List Agents</h2>
+          <p>List Real Estate Agents. </p>
+          <p><a class="btn btn-default" href="index.php?action=listcontacts">View Agents &raquo;</a></p>
+       </div>
+          
       </div><?php }} ?>
