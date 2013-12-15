@@ -11,13 +11,8 @@ public function init(){
             'filters'    => array('StringTrim')
             
         ));
-       
-         $this->addElement('text', 'file_name', array(          
-            'required'   => true,
-            'filters'    => array('StringTrim')
-            
-        ));
         
+               
           $this->addElement('text', 'prop_id', array(          
             'required'   => false,
             'filters'    => array('StringTrim')
@@ -25,6 +20,7 @@ public function init(){
         ));
         
          
+
         
         // Add the submit button
         $this->addElement('submit', 'submit', array(

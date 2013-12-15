@@ -12,7 +12,7 @@
     echo print_r($_POST);
  
  $form = new FormPhotos();
- 
+ echo "forming Photos";
  if ($form->isValid($_POST)) {
      
      $validValues = $form->getValues();
@@ -22,15 +22,38 @@
      $dbPhotosTable = new Zend_DB_Table('photos');
      
      
+ if ($_POST['photo_id'] == 0)    {
+     
+    $file_ts = time();
+    $fileName = $_FILES['file']['name'];
+    $tmpName  = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileType = $_FILES['file']['type'];
+
+    // Slurp the content of the file into a variable
+                    
+    $fp = fopen($tmpName, 'r');
+    $content = fread($fp, filesize($tmpName));
+    $content = addslashes($content);
+    fclose($fp);
+
+    if(!get_magic_quotes_gpc()){
+        $fileName = addslashes($fileName);
+     }
+                    
+    $file_info = pathinfo($_FILES['file']['name']);
      
      
- if ($_POST['photo_id'] == 0)    { 
     $photo_id =  $dbPhotosTable->insert(array(
          'photo_id' => null,
-         'file_name' => $validValues['file_name'],
         
          'title' => $validValues['title'],
-         'prop_id' => $validValues['prop_id']
+         'prop_id' => $validValues['prop_id'],
+        'file_content' => $content,
+        'file_name'=> $fileName,
+        'file_size' => $fileSize,
+        'file_extension' => $file_info['extension'],
+        'file_type' => $fileType
      ));
     
     print "<p>REcord is $photo_id";

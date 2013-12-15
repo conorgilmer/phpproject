@@ -18,10 +18,10 @@
     
     
         <div class="form-group">
-    <label for="file_name" class="col-lg-2 control-label">Upload File</label>
+    <label for="file" class="col-lg-2 control-label">Upload File</label>
     <div class="col-lg-10">
-			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-<input name="file" type="file" />
+			<!--input type="hidden" name="MAX_FILE_SIZE" value="2000000" /-->
+<input name="file" type="file" id="name"/>
 		</div>
 	</div>
         

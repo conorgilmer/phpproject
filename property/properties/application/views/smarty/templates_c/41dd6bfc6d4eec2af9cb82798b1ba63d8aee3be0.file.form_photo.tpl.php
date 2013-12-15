@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-12-15 18:02:33
+<?php /* Smarty version Smarty-3.1.15, created on 2013-12-15 18:48:49
          compiled from "/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/form_photo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:41922713052adda4ebe1360-49525544%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '41dd6bfc6d4eec2af9cb82798b1ba63d8aee3be0' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/form_photo.tpl',
-      1 => 1387126947,
+      1 => 1387129710,
       2 => 'file',
     ),
   ),
@@ -46,10 +46,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
     
         <div class="form-group">
-    <label for="file_name" class="col-lg-2 control-label">Upload File</label>
+    <label for="file" class="col-lg-2 control-label">Upload File</label>
     <div class="col-lg-10">
-			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-<input name="file" type="file" />
+			<!--input type="hidden" name="MAX_FILE_SIZE" value="2000000" /-->
+<input name="file" type="file" id="name"/>
 		</div>
 	</div>
         
