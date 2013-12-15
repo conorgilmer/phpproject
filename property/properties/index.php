@@ -41,27 +41,74 @@ session_start();
     $pageAction = isset($_GET['action']) ? $_GET['action'] : 'home';
    // die($pageAction);
     switch($pageAction) {
-        
+     
         case 'createproperty':
             //die('loading here $pageAction');
             $row['property_id']=0;
             $row['property_addr1']='';
             $smarty->assign('row',$row);
-            $smarty->assign('page','page_1.tpl');
+            $smarty->assign('page','page_property.tpl');
             $smarty->assign('pageTitle','Property Page');
            
             break;
         
-        case 'edit':
+        
+        case 'editproperty':
+            
+            $record_id = $_GET['id'];
+            $dbTable = new Zend_Db_Table('property');
+            $row = $dbTable->fetchRow('property_id = ' . $record_id);
+            
+            $smarty->assign('row',$row);
+            $smarty->assign('page','editproperty.tpl');
+            $smarty->assign('pageTitle','Edit Property Details');
+           
+            break;
+        
+        case 'createphoto':
+            $row['photo_id']=0;
+            $row['file_name']='';
+            $smarty->assign('row',$row);
+            $smarty->assign('page','page_photo.tpl');
+            $smarty->assign('pageTitle','Insert Photos Page');
+           
+            break;
+        
+        
+        case 'editphoto':
+            
+            $record_id = $_GET['id'];
+            $dbTable = new Zend_Db_Table('photos');
+            $row = $dbTable->fetchRow('photo_id = ' . $record_id);
+            
+            $smarty->assign('row',$row);
+            $smarty->assign('page','editphoto.tpl');
+            $smarty->assign('pageTitle','Edit Photo Details');
+           
+            break;
+       
+            case 'createcontact':
+            //die('loading here $pageAction');
+            $row['contact_id']=0;
+            $row['contact_name']='';
+            $row['contact_phone_no']='';
+            $smarty->assign('row',$row);
+            $smarty->assign('page','page_contact.tpl');
+            $smarty->assign('pageTitle','Property Page - Create Contact');
+           
+            break;
+        
+        
+        case 'editcontact':
             //die('loading here $pageAction');
             
             $record_id = $_GET['id'];
-            $dbTable = new Zend_Db_Table('movie');
-            $row = $dbTable->fetchRow('movie_id = ' . $record_id);
+            $dbTable = new Zend_Db_Table('contact');
+            $row = $dbTable->fetchRow('contact_id = ' . $record_id);
             
             $smarty->assign('row',$row);
-            $smarty->assign('page','editmovie.tpl');
-            $smarty->assign('pageTitle','DSA Edit Movie');
+            $smarty->assign('page','editcontact.tpl');
+            $smarty->assign('pageTitle','Edit Agent Details');
            
             break;
    

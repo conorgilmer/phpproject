@@ -21,8 +21,17 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="{$urlAction}=createproperty">Create Property</a></li>
-                <li><a href="{$urlAction}=listphotos">List Photos</a></li>
+                <li><a href="{$urlAction}=listproperties">List Properties</a></li>
+                <li class="divider"></li>
+        
+                <li><a href="{$urlAction}=createphoto">Insert Photo</a></li>
+                 <li><a href="{$urlAction}=listphotos">List Photos</a></li>
+                <li class="divider"></li>
+        
+                 <li><a href="{$urlAction}=createcontact">Create Agent</a></li>
                 <li><a href="{$urlAction}=listcontacts">List Agents</a></li>
+                <li class="divider"></li>
+                
                 <li><a href="{$urlAction}=listcounties">List Counties</a></li>
                 <li><a href="{$urlAction}=listhousetype">List House Type</a></li>
                
