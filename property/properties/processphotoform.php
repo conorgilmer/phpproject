@@ -27,7 +27,10 @@
  if ($_POST['photo_id'] == 0)    { 
     $photo_id =  $dbPhotosTable->insert(array(
          'photo_id' => null,
-         'file_name' => $validValues['movietitle']
+         'file_name' => $validValues['file_name'],
+        
+         'title' => $validValues['title'],
+         'prop_id' => $validValues['prop_id']
      ));
     
     print "<p>REcord is $photo_id";
@@ -38,9 +41,16 @@
  else {
       $photo_id =  $dbPhotosTable->update(array(
        
-         'file_name' => $validValues['file_name']
-     ),'photos_id = ' . $_POST['photos_id']);
+         'file_name' => $validValues['file_name'],
+        
+         'title' => $validValues['title'],
+         'prop_id' => $validValues['prop_id']
+     ),'photo_id = ' . $_POST['photo_id']);
      //echo "updating the movie";
+      
+    header("Location: index.php?action=listphotos");
+     
+
  }
      
  } else echo "form is NOT valid";
