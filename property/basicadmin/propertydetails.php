@@ -30,7 +30,7 @@ include (TEMPLATE_PATH . "/header.html");
 <div class="container">
 <div class="row">
 <div class="span12">
-<h1>Photo Detail</h1>
+<h1>Property Detail</h1>
 </div>
 </div>
 <div clas="row">
@@ -49,14 +49,18 @@ $sqlQuery = "SELECT a.property_addr1,
                     a.property_type,
                     a.property_status,
                     a.property_id,
+                    a.property_contact,
                     b.file_content,
                     b.file_type,
                     b.file_size,
                     b.file_name,
                     b.file_extension,
-                    b.title
-            FROM property a, photos b
-            where a.property_photo = b.photo_id";
+                    b.title, 
+                    c.contact_id,
+                    c.contact_name,
+                    c.contact_phone_no
+            FROM property a, photos b, contact c
+            where a.property_photo = b.photo_id and a.property_contact = c.contact_id";
 $result = mysql_query($sqlQuery);
 
 
@@ -69,21 +73,44 @@ if ($result) {
             <div class=\"row\">";
                $htmlString .="<div class=\"col-sm-6 col-md-4\">";
     $htmlString .= "<div class=\"thumbnail\">";
-    $htmlString .=   "<img width=\"100\" height=\"100\" src=\"data:image/jpeg;base64,". 
+    $htmlString .=   "<img width=\"350\" height=\"350\" src=\"data:image/jpeg;base64,". 
            base64_encode( $product['file_content'] ) . "\" />";
       $htmlString .="<div class=\"caption\">";
       //  $htmlString.="<h3>".$product["file_name"]."</h3>";
-        $htmlString.="<p>".$product["property_addr1"]."<br>";
-        $htmlString.= $product["property_addr2"]."<br>";
+            $htmlString.="</div>
+    </div>
+  </div>";
+    	
+               $htmlString .="<div class=\"col-sm-6 col-md-4\">";
+    $htmlString .= "<div class=\"thumbnail\">";
+      $htmlString .="<div class=\"caption\">";
+      //  $htmlString.="<h3>".$product["file_name"]."</h3>";
+        $htmlString.="<p>Address: ".$product["property_addr1"].", ";
+        $htmlString.= $product["property_addr2"].", ";
         $htmlString.= $product["property_addr3"]."</p>";
         $htmlString.="<p>".$product["title"]."</p>";
-        $htmlString.="<p>".$product["property_status"]."</p>";
+        $htmlString.="<p>Status ".$product["property_status"]."</p>";
         $htmlString.="<p>Price ".$product["property_price"]."</p>";
             $htmlString.="</div>
     </div>
   </div>";
+            
+                 $htmlString .="<div class=\"col-sm-6 col-md-4\">";
+    $htmlString .= "<div class=\"thumbnail\">";
+      $htmlString .="<div class=\"caption\">";
+      //  $htmlString.="<h3>".$product["file_name"]."</h3>";
+        $htmlString.="<p>Agent Contact Details</p>";
+        $htmlString.="<p>Name ".$product["contact_id"]." = " . $product["property_id"]."<p>";
+
+        $htmlString.="<p>Name ".$product["contact_name"]."</p>";
+        $htmlString.="<p>Phone No. ".$product["contact_phone_no"]."</p>";
+            $htmlString.="</div>
+    </div>
+  </div>";
+            
     $htmlString .=  "</div>";
-	
+
+    
 	echo $htmlString ;
 	
 	

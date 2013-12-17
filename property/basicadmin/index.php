@@ -69,7 +69,7 @@ if ($result) {
             $counter++;
              $htmlString .="<div class=\"col-sm-6 col-md-4\">";
     $htmlString .= "<div class=\"thumbnail\">";
-    $htmlString .=   "<img width=\"100\" height=\"100\" src=\"data:image/jpeg;base64,". 
+    $htmlString .=   "<img width=\"350\" height=\"350\" src=\"data:image/jpeg;base64,". 
            base64_encode( $product['file_content'] ) . "\" />";
       $htmlString .="<div class=\"caption\">";
       //  $htmlString.="<h3>".$product["file_name"]."</h3>";
