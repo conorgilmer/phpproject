@@ -74,7 +74,20 @@ session_start();
            
             break;
         
-        
+         case 'deletecontact':
+            
+            $record_id = $_GET['id'];
+            $dbTable = new Zend_Db_Table('contact');
+            die ("bnefore here");
+//            $row = $dbTable->fetchRow('contact_id = ' . $record_id);
+            $dbTable->delete('contact', 'contact_id =' . $record_id);
+  //          $smarty->assign('row',$row);
+           die ("in here");
+            $smarty->assign('page','listcontacts.tpl');
+            $smarty->assign('pageTitle','list contacts Details');
+           
+            break;
+       
         case 'editphoto':
             
             $record_id = $_GET['id'];

@@ -58,6 +58,7 @@ $sqlQuery = "SELECT a.property_addr1,
                     b.title, 
                     c.contact_id,
                     c.contact_name,
+                    
                     c.contact_phone_no
             FROM property a, photos b, contact c
             where a.property_photo = b.photo_id and a.property_contact = c.contact_id";

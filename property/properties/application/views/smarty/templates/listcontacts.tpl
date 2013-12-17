@@ -1,7 +1,7 @@
  <div class="container">
      
 <div class='row'>
-    <div class='col-md-2'>Agents</div>
+    <div class='col-md-2'>Agents contac details</div>
     <div class='col-md-10'> 
         
       <table class="table table-striped">
