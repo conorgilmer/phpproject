@@ -24,17 +24,17 @@ include (APPLICATION_PATH . "/inc/functions.inc.php");
 include (APPLICATION_PATH . "/inc/queries.inc.php");
 
 $product = array();
-$mf_id = 0;
+//$mf_id = 0;
 
 if (!empty($_GET) && isset($_GET['id'])) {
 	
 	//echo "Page is posted";
 	
-	$movieID = (int) $_GET['id'];
+	$propertyID = (int) $_GET['id'];
 	
-	$product = retrieveMovie($movieID);
+	$product = retrieveProperty($propertyID);
 	
-	$buttonLabel = "Update Product";
+	$buttonLabel = "Update Property";
 	}//end post
 	
 ?>

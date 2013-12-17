@@ -212,7 +212,17 @@ function deletePhoto($id) {
         }
 }
 
+function retrieveProperty($id) {
 
+	$sqlQuery = "SELECT * from property WHERE property_id = $id";
+
+	$result = mysql_query($sqlQuery);
+	
+	if(!$result) die("error" . mysql_error());
+	//echo $sqlQuery;
+	return mysql_fetch_assoc($result);
+	
+}
 
 
 function retrieveMovie($id) {

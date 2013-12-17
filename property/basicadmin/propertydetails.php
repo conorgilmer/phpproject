@@ -1,41 +1,44 @@
 <?php
 session_start();
+
 /*
  * Set up constant to ensure include files cannot be called on their own
 */
 define ( "MY_APP", 1 );
 /*
  * Set up a constant to your main application path
-*/
+ */
 define ( "APPLICATION_PATH", "application" );
 define ( "TEMPLATE_PATH", APPLICATION_PATH . "/view" );
 
+include_once(APPLICATION_PATH . "/inc/session.inc.php");
 
+
+/*
+ * Include the config.inc.php file
+ */
 include (APPLICATION_PATH . "/inc/config.inc.php");
 include (APPLICATION_PATH . "/inc/db.inc.php");
 include (APPLICATION_PATH . "/inc/functions.inc.php");
 
-include (TEMPLATE_PATH . "/public/header.html");
+//Set up variable so 'active' class set on navbar link
+$activeHome = "active";
 
+include (TEMPLATE_PATH . "/header.html");
 
 ?>
-
-
 <div class="container">
-
-    <div class="row">
-    <div class="span12">
-    
-    <div class="container">
 <div class="row">
 <div class="span12">
-<h1>Properties </h1>
+<h1>Photo Detail</h1>
 </div>
 </div>
 <div clas="row">
 <div class="span9">
 
 <?php 
+ if(isset($_GET['property_id']) && is_numeric($_GET['property_id'])) {
+   
 
 $sqlQuery = "SELECT a.property_addr1,
                     a.property_addr2,
@@ -58,16 +61,13 @@ $result = mysql_query($sqlQuery);
 
 
 if ($result) {
-    	$htmlString = "";
+	$htmlString = "";
+        $product = mysql_fetch_assoc($result);
 
-	$counter =0;
-        $htmlString = "
+        $htmlString = "<p>".$product["title"]."</p>
+          
             <div class=\"row\">";
-       
-	while ($product = mysql_fetch_assoc($result))
-	{ 
-            $counter++;
-             $htmlString .="<div class=\"col-sm-6 col-md-4\">";
+               $htmlString .="<div class=\"col-sm-6 col-md-4\">";
     $htmlString .= "<div class=\"thumbnail\">";
     $htmlString .=   "<img width=\"100\" height=\"100\" src=\"data:image/jpeg;base64,". 
            base64_encode( $product['file_content'] ) . "\" />";
@@ -79,25 +79,10 @@ if ($result) {
         $htmlString.="<p>".$product["title"]."</p>";
         $htmlString.="<p>".$product["property_status"]."</p>";
         $htmlString.="<p>Price ".$product["property_price"]."</p>";
-        
-        $htmlString.="<p><a href=\"propertydetails.php?property_id=".$product['property_id']."\" class=\"btn btn-primary\" role=\"button\">Property Details</a> </p>";
-    //        <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>";
-      $htmlString.="</div>
+            $htmlString.="</div>
     </div>
   </div>";
-
-	//	$htmlString .=  "<a href=\"showphoto.php?photo_id=".$product["photo_id"]." \">". $product['photo_id']."</a>";
-	//	$htmlString .=  $product["file_name"];
-	//	$htmlString .=  $product["prop_id"];
-	
-		$htmlString .=  "</tr>\n";
-		if (($counter % 3) ==0) {
-                    $htmlString.= " </div> <div class=\"row\">";
-                }
-	
-                
-                }
-	$htmlString .=  "</div>";
+    $htmlString .=  "</div>";
 	
 	echo $htmlString ;
 	
@@ -107,7 +92,12 @@ if ($result) {
 	
 	die("Failure: " . mysql_error($link_id));
 }
-?>
+
+       
+    }
+    else {
+        echo 'File not selected';
+    }?>
 </div>
 <div class="span3"></div>
 
@@ -115,23 +105,6 @@ if ($result) {
 
 
 </div> <!-- /container -->
-    </div>
-    
-    
-    
-    
-   
-    
-    
-    </div>
-    
-    
-  
-    
-    
-
-</div>
-
-
-
-<?php include (TEMPLATE_PATH . "/public/footer.html"); ?>
+<?php 
+include (TEMPLATE_PATH . "/footer.html");
+?>
