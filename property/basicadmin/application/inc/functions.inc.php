@@ -68,6 +68,27 @@ function saveMaker($maker ) {
 	return mysql_insert_id();
 	
 }
+
+// save a Agent contact details
+function saveContact($contact ) {
+	
+	$sqlQuery = "INSERT INTO contact (contact_name, contact_phone_no, contact_email)
+	values ('{$contact['contact_name']}', 
+                '{$contact['contact_phone_no']}',
+                '{$contact['contact_email']}')";
+	
+	$result = mysql_query($sqlQuery);
+
+	if (!$result) {
+		echo $sqlQuery;
+		
+		die("error" . mysql_error());
+	} 
+	//comment in	
+	return mysql_insert_id();
+	
+}
+
 // fix typos
 function saveProduct($product ) {
 	//add desc and country 
@@ -189,6 +210,24 @@ function updateMaker($product) {
         }
 }
 
+// update contact agent
+function updateContact($product) {
+    //die ("in update maker");
+    $contactID = (int) $product['contact_id'];
+    $sqlQuery = "UPDATE contact SET ";
+    $sqlQuery .= " contact_name = '". $product['contact_name'] . "',";
+    $sqlQuery .= " contact_phone_no = '". $product['contact_phone_no'] . "',";
+    $sqlQuery .= " contact_email = '". $product['contact_email'] . "'";
+      
+    $sqlQuery .= " WHERE contact_id = $contactID";
+    
+    $result = mysql_query($sqlQuery);
+	 
+	if (!$result) {
+		die("error" . mysql_error());
+        }
+}
+
 // delete product 
 function deleteMovie($id) {
     $pID = (int) $id;
@@ -212,9 +251,33 @@ function deletePhoto($id) {
         }
 }
 
+// delete contact
+function deleteContact($id) {
+    $cID = (int) $id;
+    $sqlQuery = "DELETE FROM contact where contact_id = $cID";
+    
+    
+    $result = mysql_query($sqlQuery);
+    if (!$result) {
+		die("error" . mysql_error());
+        }
+}
+
 function retrieveProperty($id) {
 
 	$sqlQuery = "SELECT * from property WHERE property_id = $id";
+
+	$result = mysql_query($sqlQuery);
+	
+	if(!$result) die("error" . mysql_error());
+	//echo $sqlQuery;
+	return mysql_fetch_assoc($result);
+	
+}
+
+function retrieveContact($id) {
+
+	$sqlQuery = "SELECT * from contact WHERE contact_id = $id";
 
 	$result = mysql_query($sqlQuery);
 	
@@ -259,7 +322,6 @@ function retrieveMaker($id) {
 	
 	if(!$result) die("error" . mysql_error());
 	
-	//echo $sqlQuery;
 	return mysql_fetch_assoc($result);
 	
 }
@@ -269,21 +331,34 @@ function retrieveMaker($id) {
 function output_edit_link($id) {
 	
 	return "<a href='edit.php?id=$id'>Edit</a>";
-	
-	
+		
 }
+
 function output_delete_link($id) {
 
 	return "<a href='delete.php?id=$id'>Delete</a>";
 
+}
+
+
+function output_delete_contact_link($id) {
+
+	return "<a href='deletecontact.php?id=$id'>Delete</a>";
+
+}
+
+
+
+function output_edit_contact_link($id) {
+	
+	return "<a href='editcontact.php?id=$id'>Edit</a>";
 
 }
 
 
 function output_edit_photo_link($id) {
 	
-	return "<a href='editphoto.php?id=$id'>Edit</a>";
-	
+	return "<a href='editphoto.php?id=$id'>Edit</a>";	
 	
 }
 function output_delete_photo_link($id) {
@@ -291,7 +366,6 @@ function output_delete_photo_link($id) {
 	return "<a href='deletephoto.php?pid=$id'>Delete</a>";
 
 }
-
 
 
 function output_edit_maker_link($id) {

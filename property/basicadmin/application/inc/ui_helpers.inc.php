@@ -1,4 +1,7 @@
 <?php
+/*
+ * Generate a drop down menu html
+ */
 function uihelperSelect($selectID, $arrayItems, $selectedItem = "") {
 	
 

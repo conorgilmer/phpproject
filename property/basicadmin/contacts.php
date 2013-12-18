@@ -51,6 +51,7 @@ if ($result) {
 	$htmlString .= "<th>ID</th>";
 	$htmlString .= "<th>Contact Name</th>";
 	$htmlString .= "<th>Contact Phone No.</th>";
+	$htmlString .= "<th>Contact Email.</th>";
 	$htmlString .= "<th colspan='2'>Actions</th>";
 
 	$htmlString .= "</tr>";
@@ -66,15 +67,19 @@ if ($result) {
 		$htmlString .=  "</td>";
 		$htmlString .=  "<td>";
 		$htmlString .=  $product["contact_phone_no"];
+		$htmlString .=  "</td>";   
+                $htmlString .=  "<td>";
+		$htmlString .=  $product["contact_email"];
 		$htmlString .=  "</td>";
 		
 		
+		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_edit_link($product["contact_id"]);
+		$htmlString .=  output_edit_contact_link($product["contact_id"]);
 		$htmlString .=  "</td>";
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_delete_link($product["contact_id"]);
+		$htmlString .=  output_delete_contact_link($product["contact_id"]);
 		$htmlString .=  "</td>";
 		
 		

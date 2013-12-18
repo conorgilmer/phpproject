@@ -19,17 +19,29 @@ include_once(APPLICATION_PATH . "/inc/session.inc.php");
  */
 include (APPLICATION_PATH . "/inc/config.inc.php");
 include (APPLICATION_PATH . "/inc/db.inc.php");
+include (APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 include (APPLICATION_PATH . "/inc/functions.inc.php");
+include (APPLICATION_PATH . "/inc/queries.inc.php");
 
-//die ("hi delete photo");
-if (!empty($_GET) && isset($_GET['pid'])) {
-    
-    $pID = (int) $_GET['pid'];
-    deletePhoto($pID);
-   
-}
-// redirect to the photos list page
- header("Location: photos.php");
- 
- ?>
-    
+$contact = array();
+
+
+if (!empty($_GET) && isset($_GET['id'])) {
+	
+	//echo "Page is posted";
+	
+	$contactID = (int) $_GET['id'];
+	
+	$contact = retrieveContact($contactID);
+	
+	$buttonLabel = "Update Contact";
+	}//end post
+	
+?>
+<?php 
+$activeInsert = "active";
+
+include (TEMPLATE_PATH . "/header.html");
+include (TEMPLATE_PATH . "/form_contact.html");
+include (TEMPLATE_PATH . "/footer.html");
+?>

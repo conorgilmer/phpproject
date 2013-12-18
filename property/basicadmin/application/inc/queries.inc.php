@@ -112,6 +112,29 @@ function counties_get_all() {
 
 
 
+function get_Counties($id) {
+	
+	$sqlQuery = "SELECT * FROM counties where county_id = ".$id;
+	$result = mysql_query ( $sqlQuery );
+	//$records = array ();
+	//$row = mysql_fetch_array($sqlQuery);
+        //die ($row);
+        
+        //$result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+if (!$result) {
+    echo 'Could not run query: ' . mysql_error();
+    exit;
+}
+$row = mysql_fetch_row($result);
+        
+        
+        
+	return $row['county_name'];
+}
+
+
+
+
 
 
 function housetype_get_all() {

@@ -21,15 +21,14 @@ include (APPLICATION_PATH . "/inc/config.inc.php");
 include (APPLICATION_PATH . "/inc/db.inc.php");
 include (APPLICATION_PATH . "/inc/functions.inc.php");
 
-//die ("hi delete photo");
-if (!empty($_GET) && isset($_GET['pid'])) {
+if (!empty($_GET) && isset($_GET['id'])) {
     
-    $pID = (int) $_GET['pid'];
-    deletePhoto($pID);
+    $cID = (int) $_GET['id'];
+    deleteContact($cID);
    
 }
-// redirect to the photos list page
- header("Location: photos.php");
+// redirect to the contacts list page
+ header("Location: contacts.php");
  
  ?>
     
