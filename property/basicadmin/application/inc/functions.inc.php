@@ -7,11 +7,6 @@
 defined('MY_APP') or die('Restricted access');
 
 
-//function validateproduct($product) {
-//	return true;
-	
-//}
-//
 //basic validation to snsure a filed is entered in address line one
 function validateProperty ($property) {
     $field = $property['property_addr1'];
@@ -70,23 +65,6 @@ function getCounty($c_id ) {
 	
 }
 
-// save a manufacturer
-function saveMaker($maker ) {
-	
-	$sqlQuery = "INSERT INTO mfs (mf_title)
-	values ('{$maker['mf_title']}')";
-	
-	$result = mysql_query($sqlQuery);
-
-	if (!$result) {
-		echo $sqlQuery;
-		
-		die("error" . mysql_error());
-	} 
-	//comment in	
-	return mysql_insert_id();
-	
-}
 
 // save a Agent contact details
 function saveContact($contact ) {
@@ -161,10 +139,6 @@ function uploadFiles($product_id) {
 		echo "<p>There was an error uploading the file, please try again!";
 	}
         
-       // } else {
-        //echo "<b> Upload failed file greather than" . $product['maxfilesize'] ." .</b>";
-       // }	
-        
 }
 
 
@@ -217,23 +191,6 @@ function updateProperty($product) {
     
 }
 
-//update maker 
-
-function updateMaker($product) {
-    //die ("in update maker");
-    $makerID = (int) $product['mf_id'];
-    $sqlQuery = "UPDATE mfs SET ";
-    $sqlQuery .= " mf_title = '". $product['mf_title'] . "'";
-   
-    $sqlQuery .= " WHERE mf_id = $makerID";
-    
-    $result = mysql_query($sqlQuery);
-	 
-	if (!$result) {
-		die("error" . mysql_error());
-        }
-}
-
 // update contact agent
 function updateContact($product) {
     //die ("in update maker");
@@ -253,7 +210,7 @@ function updateContact($product) {
 }
 
 // delete product 
-function deleteMovie($id) {
+function deleteProperty($id) {
     $pID = (int) $id;
     $sqlQuery = "DELETE FROM property where property_id = $pID";
     
@@ -280,7 +237,6 @@ function deleteContact($id) {
     $cID = (int) $id;
     $sqlQuery = "DELETE FROM contact where contact_id = $cID";
     
-    
     $result = mysql_query($sqlQuery);
     if (!$result) {
 		die("error" . mysql_error());
@@ -294,7 +250,7 @@ function retrieveProperty($id) {
 	$result = mysql_query($sqlQuery);
 	
 	if(!$result) die("error" . mysql_error());
-	//echo $sqlQuery;
+
 	return mysql_fetch_assoc($result);
 	
 }
@@ -306,7 +262,6 @@ function retrievePhoto($id) {
 	$result = mysql_query($sqlQuery);
 	
 	if(!$result) die("error" . mysql_error());
-	//echo $sqlQuery;
 	return mysql_fetch_assoc($result);
 	
 }
@@ -318,51 +273,10 @@ function retrieveContact($id) {
 	$result = mysql_query($sqlQuery);
 	
 	if(!$result) die("error" . mysql_error());
-	//echo $sqlQuery;
-	return mysql_fetch_assoc($result);
-	
-}
-
-
-function retrieveMovie($id) {
-
-	$sqlQuery = "SELECT * from products WHERE product_id = $id";
-
-	$result = mysql_query($sqlQuery);
-	
-	if(!$result) die("error" . mysql_error());
-	//echo $sqlQuery;
-	return mysql_fetch_assoc($result);
-	
-}
-
-
-//Makers
-
-function deleteMaker($id) {
-    $makerID = (int) $id;
-    $sqlQuery = "DELETE FROM mfs where mf_id = $makerID";
-    
-    $result = mysql_query($sqlQuery);
-    if (!$result) {
-		die("error deleting maker" . mysql_error());
-        }
-}
-
-// return the manufacturer details
-function retrieveMaker($id) {
-
-	$sqlQuery = "SELECT * from mfs WHERE mf_id = $id";
-
-	$result = mysql_query($sqlQuery);
-	
-	if(!$result) die("error" . mysql_error());
 	
 	return mysql_fetch_assoc($result);
 	
 }
-
-//fix typos
 
 function output_edit_link($id) {
 	
@@ -384,7 +298,6 @@ function output_delete_contact_link($id) {
 }
 
 
-
 function output_edit_contact_link($id) {
 	
 	return "<a href='editcontact.php?id=$id'>Edit</a>";
@@ -403,20 +316,7 @@ function output_delete_photo_link($id) {
 
 }
 
-
-function output_edit_maker_link($id) {
-	
-	return "<a href='editmaker.php?id=$id'>Edit</a>";
-	
-	
-}
-function output_delete_maker_link($id) {
-//
-	return "<a href='deletemaker.php?id=$id'>Delete</a>";
-
-}
-
-
+// Formualted drop down with selection in menu
 function output_selected($currentValue, $valueToMatch) {
 	
 	

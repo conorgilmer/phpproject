@@ -64,31 +64,24 @@
 				}
 
 
-echo uihelperSelect('housetype_id',$arrayItems,$product['housetype_id']) ?>
+echo uihelperSelect('housetype_id',$arrayItems,$product['property_type']) ?>
 		</div>
 	</div>
-
-
         
         <div class="control-group">
 		<label class="control-label" for="County">County</label>
 		<div class="controls">
-			<?php 
-				$records = counties_get_all();
-	$product['county_id'] = 0;
-				$arrayItems1=array();
+		<?php 
+                $records = counties_get_all();
+            	$product['county_id'] = 0;
+		$arrayItems1=array();
+                $count = sizeof($records);
+		for($i=0; $i < $count; $i++) {
+                    $arrayItems1[$i]["label"]=$records[$i]['county_name'];
+                    $arrayItems1[$i]["id"]=$records[$i]['county_id'];	
+		}
 
-				$count = sizeof($records);
-				for($i=0; $i < $count; $i++) {
-
-				$arrayItems1[$i]["label"]=$records[$i]['county_name'];
-				$arrayItems1[$i]["id"]=$records[$i]['county_id'];
-	
-
-				}
-
-
-echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
+        echo uihelperSelect('county_id',$arrayItems1,$product['property_county']) ?>
 		</div>
 	</div>
 
@@ -154,7 +147,7 @@ echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
 				}
 
 
-echo uihelperSelect('photo_id',$arrayItems1,$product['photo_id']) ?>
+echo uihelperSelect('photo_id',$arrayItems1,$product['property_photo']) ?>
 		</div>
 	</div>        
         
@@ -176,7 +169,7 @@ echo uihelperSelect('photo_id',$arrayItems1,$product['photo_id']) ?>
 				}
 
 
-echo uihelperSelect('contact_id',$arrayItems1,$product['contact_id']) ?>
+echo uihelperSelect('contact_id',$arrayItems1,$product['property_contact']) ?>
 		</div>
 	</div>
 

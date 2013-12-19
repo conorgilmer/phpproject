@@ -23,11 +23,11 @@ include (APPLICATION_PATH . "/inc/functions.inc.php");
 
 if (!empty($_GET) && isset($_GET['id'])) {
     
-    $movieID = (int) $_GET['id'];
-    deleteMovie($movieID);
+    $propertyID = (int) $_GET['id'];
+    deleteProperty($propertyID);
    
 }
-//die ("in here");
+
  header("Location: listproducts.php");
  
  ?>

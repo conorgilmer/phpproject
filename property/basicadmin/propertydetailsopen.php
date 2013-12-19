@@ -11,7 +11,8 @@ define ( "MY_APP", 1 );
 define ( "APPLICATION_PATH", "application" );
 define ( "TEMPLATE_PATH", APPLICATION_PATH . "/view" );
 
-include_once(APPLICATION_PATH . "/inc/session.inc.php");
+//open retrieve property details
+//include_once(APPLICATION_PATH . "/inc/session.inc.php");
 
 
 /*
@@ -26,7 +27,7 @@ include (APPLICATION_PATH . "/inc/queries.inc.php");
 //Set up variable so 'active' class set on navbar link
 $activeHome = "active";
 
-include (TEMPLATE_PATH . "/header.html");
+include (TEMPLATE_PATH . "/public/header.html");
 
 ?>
 <div class="container">

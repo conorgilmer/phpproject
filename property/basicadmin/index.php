@@ -80,7 +80,7 @@ if ($result) {
         $htmlString.="<p>".$product["property_status"]."</p>";
         $htmlString.="<p>Price ".$product["property_price"]."</p>";
         
-        $htmlString.="<p><a href=\"propertydetails.php?property_id=".$product['property_id']."\" class=\"btn btn-primary\" role=\"button\">Property Details</a> </p>";
+        $htmlString.="<p><a href=\"propertydetailsopen.php?property_id=".$product['property_id']."\" class=\"btn btn-primary\" role=\"button\">Property Details</a> </p>";
     //        <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>";
       $htmlString.="</div>
     </div>
