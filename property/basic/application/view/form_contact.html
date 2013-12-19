@@ -1,0 +1,55 @@
+
+<?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert"></button>
+	<strong>Message</strong>
+	<?php echo $flashMessage ?>
+</div>
+
+<?php endif;  ?>
+<div class="container">
+  <div class="row">
+    <div class="offset4 span4">
+<form class="form-horizontal" method="post" action="insertcontact.php" enctype="multipart/form-data" >
+	<input type="hidden" name="contact_id"
+		value="<?php echo $contact['contact_id']; ?>" />
+	<div class="control-group">
+		<label class="control-label" for="inputproductTitle">Contact</label>
+		<div class="controls">
+			<input type="text" id="inputproductTitle" name="contact_name"
+				placeholder="Contact_name" value="<?php echo $contact['contact_name']; ?>">
+		</div>
+	</div>
+        
+        <div class="control-group">
+		<label class="control-label" for="contactphoneno">Contact Phone No</label>
+		<div class="controls">
+			<input type="text" id="contactphoneno" name="contact_phone_no"
+				placeholder="Contact_phone_no" value="<?php echo $contact['contact_phone_no']; ?>">
+		</div>
+	</div>
+        
+<div class="control-group">
+		<label class="control-label" for="contactemail">Contact Email</label>
+		<div class="controls">
+			<input type="text" id="contactemail" name="contact_email"
+				placeholder="Contact_email" value="<?php echo $contact['contact_email']; ?>">
+		</div>
+	</div>
+        
+        
+	<div class="control-group">
+		<div class="controls">
+
+			<button type="submit" class="btn">
+				<?php echo $buttonLabel ?>
+			</button>
+		</div>
+	</div>
+    </div>
+  </div>
+</div>
+
+</form>
+
+

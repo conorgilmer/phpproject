@@ -42,20 +42,20 @@
 		<div class="controls">
 			<?php 
 				$records = properties_get_all();
-	
+	$product['property_id'] = 0;
 				$arrayItems1=array();
 
 				$count = sizeof($records);
 				for($i=0; $i < $count; $i++) {
 
-				$arrayItems1[$i]["label"]=$records[$i]['property_addr1'];
+				$arrayItems1[$i]["label"]=$records[$i]['property_id'];
 				$arrayItems1[$i]["id"]=$records[$i]['property_id'];
 	
 
 				}
 
 
-echo uihelperSelect('prop_id',$arrayItems1,$photo['prop_id']) ?>
+echo uihelperSelect('prop_id',$arrayItems1,$product['property_id']) ?>
 		</div>
 	</div>
         
