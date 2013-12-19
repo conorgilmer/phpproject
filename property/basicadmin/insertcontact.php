@@ -37,7 +37,7 @@ if (!empty($_POST)) {
         $contact['contact_id'] = isset($_POST["contact_id"]) ? (int) $_POST["contact_id"] : 0;
         
         $flashMessage = "";
-	if (validateProduct($contact)) {
+	if (validateContact($contact)) {
 		if ($contact['contact_id'] == 0) {
          //SaveContactreturns the id of the record inserted         
 		$contact_id = saveContact($contact);
@@ -52,7 +52,7 @@ if (!empty($_POST)) {
                     header("Location: contacts.php");
                 }	
 	}
-	
+        $flashMessage = "Invalid Fields entered";
 	}//end post
 	
 

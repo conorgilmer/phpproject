@@ -7,12 +7,31 @@
 defined('MY_APP') or die('Restricted access');
 
 
-function validateproduct($product) {
+//function validateproduct($product) {
+//	return true;
 	
-	
-	return true;
-	
-	
+//}
+//
+//basic validation to snsure a filed is entered in address line one
+function validateProperty ($property) {
+    $field = $property['property_addr1'];
+   // print_r($field);
+   // print_r($property);
+    
+    if (empty($field))
+        return false;
+    else 
+        return true;
+}
+
+// basic validation insureing contant name is entered
+function validateContact ($contact) {
+    $field = trim($contact['contact_name']);
+    if (empty($field)) {
+     
+    return false;}
+    else 
+        return true;
 }
 
 // get the type
@@ -99,12 +118,12 @@ function saveProduct($product ) {
 	$sqlQuery = "INSERT INTO property (property_addr1, 
 property_addr2,property_addr3,property_county, property_type, property_price, 
 property_size,property_status,property_contact, property_photo,
-property_ts
+property_ts, property_date_created
 )
 	values ('{$product['property_addr1']}','{$product['property_addr2']}','{$product['property_addr3']}',
             '{$product['property_county']}','{$product['property_type']}', '{$product['property_price']}'
         , '{$product['property_size']}', '{$product['property_status']}', '{$product['property_contact']}'
-            , '{$product['property_photo']}', '{$ts}')";
+            , '{$product['property_photo']}', '{$ts}' , '{$ts}')";
 	
 	$result = mysql_query($sqlQuery);
 	
@@ -168,22 +187,27 @@ function saveImageRecord($product_id, $imageName) {
  */
 
 
-function updateMovie($product) {
-    $productID = (int) $product['product_id'];
-    $sqlQuery = "UPDATE products SET ";
-     $sqlQuery .= " taste = '" . $product['taste'] . "',";
-     $sqlQuery .= " price = '". $product['price'] . "',";
-     $sqlQuery .= " title = '". $product['title'] . "',";
-     $sqlQuery .= " description = '". $product['description'] . "', ";
-     $sqlQuery .= " mf_id = '". $product['mf_id'] . "', ";
-   //  $sqlQuery .= " imagefile = '". $product['imagefile'] . "', ";
-     $sqlQuery .= " country_id = '". $product['country_id'] . "'";
-   
-    $sqlQuery .= " WHERE product_id = $productID";
+function updateProperty($product) {
+    $propertyID = (int) $product['property_id'];
+           $ts = date('Y-m-d H:i:s'); //modified timestamp
+    $sqlQuery = "UPDATE property SET ";
+     $sqlQuery .= " property_addr1 = '" . $product['property_addr1'] . "',";
+     $sqlQuery .= " property_addr2 = '" . $product['property_addr2'] . "',";
+     $sqlQuery .= " property_addr3 = '" . $product['property_addr3'] . "',";
+     $sqlQuery .= " property_contact = '" . $product['property_contact'] . "',";
+     $sqlQuery .= " property_county = '" . $product['property_county'] . "',";
+     $sqlQuery .= " property_desc = '" . $product['property_desc'] . "',";
+     $sqlQuery .= " property_photo = '" . $product['property_photo'] . "',";
+     $sqlQuery .= " property_price = '" . $product['property_price'] . "',";
+     $sqlQuery .= " property_size = '" . $product['property_size'] . "',";
+     $sqlQuery .= " property_ts = '" . $ts . "',";
+     $sqlQuery .= " property_status = '" . $product['property_status'] . "',";
+ 
+    $sqlQuery .= " property_type = '". $product['property_type'] . "'";
     
-  //  echo $sqlQuery;
- //  die("...");
+    $sqlQuery .= " WHERE property_id = $propertyID";
     
+ 
     $result = mysql_query($sqlQuery);
 	
 	if (!$result) {
@@ -266,6 +290,18 @@ function deleteContact($id) {
 function retrieveProperty($id) {
 
 	$sqlQuery = "SELECT * from property WHERE property_id = $id";
+
+	$result = mysql_query($sqlQuery);
+	
+	if(!$result) die("error" . mysql_error());
+	//echo $sqlQuery;
+	return mysql_fetch_assoc($result);
+	
+}
+
+function retrievePhoto($id) {
+
+	$sqlQuery = "SELECT * from photos WHERE photo_id = $id";
 
 	$result = mysql_query($sqlQuery);
 	

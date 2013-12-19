@@ -23,15 +23,24 @@ $acceptable_extensions[3] = "GIF";
 $acceptable_extensions[4] = "PNG";
 $acceptable_extensions[5] = "png";
 
-$product = array();
+$photo = array();
+$photo['title'] = "";
+$photo['prop_id'] = 0;
+$photo['photo_id'] = 0;
+$photo['file_name'] = "";
+$photo['file_type'] = "";
+$photo['file_extension'] = "";
 
 if (!empty($_POST)) {
 	
-	$product = array();
-	$product['title'] = htmlspecialchars(strip_tags($_POST["photo_title"])); 
+	$photo = array();
+	$photo['title'] = htmlspecialchars(strip_tags($_POST["title"])); 
         $flashMessage = "";
-        
+        $photo['photo_id'] = isset($_POST["photo_id"]) ? (int) $_POST["photo_id"] : 0;
+       
         $validated = 1;
+        
+        if ($photo['photo_id'] == 0) {
 
 if($_FILES && $_FILES['file']['name']){
             
@@ -61,7 +70,8 @@ if($_FILES && $_FILES['file']['name']){
 if($validated){
 
     // Get important information about the file and put it into variables
-    $filetitle = $_POST['photo_title'];
+    
+    $filetitle = $_POST['title'];
     $prop_id = $_POST['prop_id'];
     $file_ts = time();
     $fileName = $_FILES['file']['name'];
@@ -98,15 +108,99 @@ if($validated){
     // If the query was successful, give success message
 
     if(!$result){
-        $flashmessage = "Could not add this file.";    
+        $flashMessage = "Could not add this file.";    
     } 
     else{
-        $flashmessage =  "New file successfully added.";
+        $flashMessage =  "New file successfully added.";
     }
 }else{
-    $flashmessage = "Invalid file.";    
+    $flashMessage = "Invalid file.";    
 }
         
+
+        } else 
+            
+        {
+        $photoID =    $photo['photo_id'];
+            
+            
+if($_FILES && $_FILES['file']['name']){
+            
+    //make sure the file has a valid file extension
+    
+    $file_info = pathinfo($_FILES['file']['name']);
+    $acceptable_ext = 0;
+                
+    for($x = 0; $x < count($acceptable_extensions); $x++){
+                    
+        if($file_info['extension'] == $acceptable_extensions[$x]){
+            $acceptable_ext = 1;
+                        
+        }
+    }
+                
+    if(!$acceptable_ext){
+        $validated = 0;
+    }   
+}else{
+    $validated = 0;
+}
+
+//Now that we're sure we have a valid file, 
+//we'll add it into the database
+
+if($validated){
+
+    // Get important information about the file and put it into variables
+    
+    $filetitle = $_POST['title'];
+    $prop_id = $_POST['prop_id'];
+    $file_ts = time();
+    $fileName = $_FILES['file']['name'];
+    $tmpName  = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileType = $_FILES['file']['type'];
+
+    // Slurp the content of the file into a variable
+                    
+    $fp = fopen($tmpName, 'r');
+    $content = fread($fp, filesize($tmpName));
+    $content = addslashes($content);
+    fclose($fp);
+
+    if(!get_magic_quotes_gpc()){
+        $fileName = addslashes($fileName);
+     }
+                    
+    $file_info = pathinfo($_FILES['file']['name']);
+
+    $sql = "Update photos SET 
+                title = '".$filetitle."', 
+                file_name = '".$fileName."', 
+                file_type = '".$fileType."',
+                file_size = '".$fileSize."',
+                file_content = '".$content."',
+                file_extension = '".$file_info['extension']."',
+                file_ts = '".$file_ts."',
+                prop_id = '".$prop_id."'  where photo_id = $photoID";
+                
+                
+    $result = mysql_query($sql);
+            
+    // If the query was successful, give success message
+
+    if(!$result){
+        $flashMessage = "Could not add this file.";    
+    } 
+    else{
+        $flashMessage =  "New file successfully added.";
+    }
+}else{
+    $flashMessage = "Invalid file.";    
+}
+            
+            
+        }
             
         
 	

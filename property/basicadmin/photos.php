@@ -49,7 +49,8 @@ if ($result) {
 	
 	$htmlString .= "<tr>";
 	$htmlString .= "<th>PhotoID</th>";
-	$htmlString .= "<th>Photo Name</th>";
+        $htmlString .= "<th>Name</th>";
+	$htmlString .= "<th>File Name</th>";
         $htmlString .= "<th>Property ID</th>";
         
 	$htmlString .= "<th colspan='2'>Actions</th>";
@@ -61,6 +62,9 @@ if ($result) {
 		$htmlString .=  "<tr>" ;
 		$htmlString .=  "<td>";
 		$htmlString .=  "<a href=\"showphoto.php?photo_id=".$product["photo_id"]." \">". $product['photo_id']."</a>";
+		$htmlString .=  "</td>";
+                $htmlString .=  "<td>";
+		$htmlString .=  $product["title"];
 		$htmlString .=  "</td>";
 		$htmlString .=  "<td>";
 		$htmlString .=  $product["file_name"];

@@ -13,6 +13,7 @@
 <form class="form-horizontal" method="post" action="insert.php" enctype="multipart/form-data" >
 	<input type="hidden" name="property_id"
 		value="<?php echo $product['property_id']; ?>" />
+       
 	<div class="control-group">
 		<label class="control-label" for="inputaddr1">Address 1</label>
 		<div class="controls">
@@ -67,7 +68,9 @@ echo uihelperSelect('housetype_id',$arrayItems,$product['housetype_id']) ?>
 		</div>
 	</div>
 
-        	<div class="control-group">
+
+        
+        <div class="control-group">
 		<label class="control-label" for="County">County</label>
 		<div class="controls">
 			<?php 
@@ -89,10 +92,17 @@ echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
 		</div>
 	</div>
 
-        
+            	<div class="control-group">
+		<label class="control-label" for="desc">Description</label>
+		<div class="controls">
+			<input type="text" id="inputdesc" name="desc"
+				placeholder="Desc" value="<?php echo $product['property_desc']; ?>">
+                        
+		</div>
+	</div>
         
        	<div class="control-group">
-		<label class="control-label" for="inputprice">Size</label>
+		<label class="control-label" for="price">Size</label>
 		<div class="controls">
 			<input type="text" id="inputprice" name="size"
 				placeholder="Size" value="<?php echo $product['property_size']; ?>">
@@ -118,14 +128,37 @@ echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
 
     
         
-         	<div class="control-group">
+        <div class="control-group">
 		<label class="control-label" for="inputprice">Price</label>
 		<div class="controls">
 			<input type="text" id="inputprice" name="price"
 				placeholder="Price" value="<?php echo $product['property_price']; ?>">
 		</div>
 	</div>
-	<div class="control-group">
+	
+        <div class="control-group">
+		<label class="control-label" for="inputproductCountry">Photo</label>
+		<div class="controls">
+			<?php 
+				$records = photos_get_all();
+	$product['photo_id'] = 0;
+				$arrayItems1=array();
+
+				$count = sizeof($records);
+				for($i=0; $i < $count; $i++) {
+
+				$arrayItems1[$i]["label"]=$records[$i]['file_name'];
+				$arrayItems1[$i]["id"]=$records[$i]['photo_id'];
+	
+
+				}
+
+
+echo uihelperSelect('photo_id',$arrayItems1,$product['photo_id']) ?>
+		</div>
+	</div>        
+        
+        <div class="control-group">
 		<label class="control-label" for="inputproductCountry">Agent</label>
 		<div class="controls">
 			<?php 
@@ -149,19 +182,13 @@ echo uihelperSelect('contact_id',$arrayItems1,$product['contact_id']) ?>
 
 
 
-
-
-<!--  note, you cannot style file upload button, but folllowinglink is useful -->
-<!--  http://www.quirksmode.org/dom/inputfile.html -->
-
-	<!--div class="control-group">
-	<label class="control-label" for="inputproductTitle">Upload Image</label>
+        <div class="control-group">
 		<div class="controls">
 
-			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
-<input name="uploadedfile" type="file" />
+			
 		</div>
-	</div>-->
+        </div>
+        
 	<div class="control-group">
 		<div class="controls">
 

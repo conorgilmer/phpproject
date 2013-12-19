@@ -134,12 +134,28 @@ $row = mysql_fetch_row($result);
 
 
 
-
-
-
+// list hte house types
 function housetype_get_all() {
 	
 	$sqlQuery = "SELECT * FROM housetype where 1 order by housetype_id asc";
+	$result = mysql_query ( $sqlQuery );
+	$records = array ();
+	
+	if ($result) {
+		while ( $records [] = mysql_fetch_assoc ( $result ) );
+		
+		
+		
+		array_pop ( $records ); // pop the null record which was pushed on as last
+		                     // item
+	}
+	return $records;
+
+}
+
+function photos_get_all() {
+	
+	$sqlQuery = "SELECT * FROM photos where 1 order by photo_id asc";
 	$result = mysql_query ( $sqlQuery );
 	$records = array ();
 	

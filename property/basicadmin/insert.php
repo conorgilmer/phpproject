@@ -27,7 +27,8 @@ $product['property_addr2'] = "";
 $product['property_addr3'] ="";
 $product['property_county'] ="";
 $product['property_type'] ="";
-$product['product_price']="";
+$product['property_desc'] ="";
+$product['property_price']="";
 $product['property_size'] ="";
 $product['property_status'] ="";
 $product['product_contact']="";
@@ -46,15 +47,20 @@ if (!empty($_POST)) {
 	$product['property_type'] = (int) htmlspecialchars(strip_tags($_POST["housetype_id"]));
         $product['property_price'] = htmlspecialchars(strip_tags($_POST["price"]));
         $product['property_size']  = htmlspecialchars(strip_tags($_POST["size"]));
+        $product['property_desc']  = htmlspecialchars(strip_tags($_POST["desc"]));
+       
         $product['property_status'] = htmlspecialchars(strip_tags($_POST["status"]));
         $product['property_contact'] = (int) htmlspecialchars(strip_tags($_POST["contact_id"]));
-	$product['property_photo'] = 0;//(int) htmlspecialchars(strip_tags($_POST["photo_id"]));
-	
+	$product['property_photo'] = (int) htmlspecialchars(strip_tags($_POST["photo_id"]));
+	//$product['property_date_created']  = htmlspecialchars(strip_tags($_POST["date_created"]));
+        
+        $product['property_date_created'] = isset($_POST["property_date_created"]) ? (int) $_POST["property_date_created"] : 0;
+           
         $product['property_id'] = isset($_POST["property_id"]) ? (int) $_POST["property_id"] : 0;
         
         
         $flashMessage = "";
-	if (validateProduct($product)) {
+	if (validateProperty($product)) {
 		if ($product['property_id'] == 0) {
          //New! Save Movie returns the id of the record inserted         
 		$product_id = saveproduct($product);
@@ -64,14 +70,16 @@ if (!empty($_POST)) {
 		$flashMessage = "Record has been saved";
                 } else {
                     //update product record and upload new file
-                    updateMovie($product);
+                    updateProperty($product);
                    // uploadFiles($product['property_id']);
 	         //flash record updated
         	    $flashMessage = "Record has been updated";
                 	
                //     header("Location: listproducts.php");
-                }	
-	}
+                }
+        } else
+            $flashMessage = ("invalid values entered");
+	
 	
 	}//end post
 	
