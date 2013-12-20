@@ -82,16 +82,17 @@ if ($result) {
     </div>
   </div>";
     	
-               $htmlString .="<div class=\"col-sm-6 col-md-4\">";
+            $htmlString .="<div class=\"col-sm-6 col-md-4\">";
     $htmlString .= "<div class=\"thumbnail\">";
       $htmlString .="<div class=\"caption\">";
         $htmlString.="<p><strong>".$product["property_status"]."</strong></p>";
+        $htmlString.="<p><strong>".getHouseType($product["property_type"])."</strong></p>";
         $htmlString.="<p><strong>Address: </strong>".$product["property_addr1"].", ";
         $htmlString.= $product["property_addr2"].", ";
         $htmlString.= $product["property_addr3"]."</p>";
-        $htmlString.="<p>". getCounty($product["property_county"])."</p>";
+        $htmlString.="<p><strong>County: </strong>". getCounty($product["property_county"])."</p>";
         $htmlString.="<p><strong>Description </strong>".$product["property_desc"]."</p>";
-        $htmlString.="<p><strong>Price </strong>".$product["property_price"]."</p>";
+        $htmlString.="<p><strong>Price : &euro;</strong>".$product["property_price"]."</p>";
             $htmlString.="</div>
     </div>
   </div>";

@@ -37,7 +37,7 @@ function product_listing_get_byid($movie_id) {
 
 }
 
-function mf_get_all() {
+/*function mf_get_all() {
 	
 	$sqlQuery = "SELECT * FROM mfs where 1 order by mf_id asc";
 	$result = mysql_query ( $sqlQuery );
@@ -54,7 +54,7 @@ function mf_get_all() {
 	return $records;
 
 }
-
+*/
 function properties_get_all() {
 	
 	$sqlQuery = "SELECT * FROM property where 1 order by property_id asc";
