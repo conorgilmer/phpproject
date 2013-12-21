@@ -20,7 +20,107 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+<script>
+function showByStatus(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  } 
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","getproperties.php?q="+str,true);
+xmlhttp.send();
+}
 
+
+function showByType(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  } 
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","getproperties.php?t="+str,true);
+xmlhttp.send();
+}
+
+
+/* multi */
+// Create empty variables in preparation for the two values from the two dropdown menus
+var first; 
+var second; 
+
+function firstly(x) { 
+// Grab the value from the first dropdown and set it to 'first'
+  first = x.value;
+    if (typeof second != 'undefined') { // If 'second' isn't undefined, run the 'route' function with the two variables
+        route(first, second);
+    } // Otherwise do nothing
+}
+
+// This is the same function but for the second variable
+function secondly(x) {
+    second = x.value;
+    if (typeof first != 'undefined') {
+        route(first, second);
+    }
+}
+
+// This is the AJAX function that takes two parameters
+function route(first, second) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+    // if the XMLHttpRequest is successful
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+      // Then populate div id="properties" with the responseText
+        document.getElementById("properties").innerHTML=xmlhttp.responseText;
+        }
+      }
+
+  // Actually send the data using the variables assigned with firstly() and secondly()
+    xmlhttp.open("GET","getproperties.php?first="+first+"&second="+second,true);
+    xmlhttp.send();
+}
+/* multi */
+
+</script>
     
      
      <style>
@@ -57,7 +157,19 @@
       <li class="active"><a href="gridproperty.php">Grid Properties</a></li>
       <li class="active"><a href="listproducts.php">List Properties</a></li>
      
+      
+      
+      
       <li><a href="insert.php">Insert Property</a></li>
+       <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="listproductsusingajax.php">Search  (Using AJAX)</a></li>
+            <li><a href="search.php">Basic Search</a></li>
+         
+          
+        </ul>
+      </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Photos <b class="caret"></b></a>
         <ul class="dropdown-menu">
