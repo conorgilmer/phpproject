@@ -1,4 +1,7 @@
 <?php
+/*
+ * List the 32 Counties for property application
+ */
 session_start();
 
 /*
@@ -50,7 +53,7 @@ if ($result) {
 	$htmlString .= "<tr>";
 	$htmlString .= "<th>ID</th>";
 	$htmlString .= "<th>County Name</th>";
-	$htmlString .= "<th colspan='2'>Actions</th>";
+//	$htmlString .= "<th colspan='2'>Actions</th>"; // for now not going to add/delete counties
 
 	$htmlString .= "</tr>";
 	
@@ -64,7 +67,7 @@ if ($result) {
 		$htmlString .=  $product["county_name"];
 		$htmlString .=  "</td>";
 		
-		
+		/* for now going to stick with the 32 counties
 		$htmlString .=  "<td>";
 		$htmlString .=  output_edit_link($product["county_id"]);
 		$htmlString .=  "</td>";
@@ -72,7 +75,7 @@ if ($result) {
 		$htmlString .=  "<td>";
 		$htmlString .=  output_delete_link($product["county_id"]);
 		$htmlString .=  "</td>";
-		
+		*/
 		
 		
 		$htmlString .=  "</tr>\n";

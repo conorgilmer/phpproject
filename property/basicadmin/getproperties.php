@@ -1,4 +1,7 @@
 <?php 
+/*
+ * return a list of propeperties depending on passed parameters
+ */
 session_start();
 /*
  * Set up constant to ensure include files cannot be called on their own
@@ -12,7 +15,6 @@ define ( "TEMPLATE_PATH", APPLICATION_PATH . "/view" );
 
 include_once(APPLICATION_PATH . "/inc/session.inc.php");
 
-
 /*
  * Include the config.inc.php file
  */
@@ -21,9 +23,9 @@ include (APPLICATION_PATH . "/inc/db.inc.php");
 include (APPLICATION_PATH . "/inc/functions.inc.php");
 
 //$con = mysql_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);
-
 //mysql_select_db($con,DB_DATABASE);
 
+// using a cross join
 $sqlQuery = "select * from property a, photos b  ";
 if($_GET['first'] != "" && $_GET['second'] == ""){
 $sqlQuery .= "WHERE a.property_photo = b.photo_id AND  a.property_type='".$_GET['first']."'";
@@ -33,9 +35,7 @@ $sqlQuery .= "WHERE  a.property_photo = b.photo_id AND a.property_status ='".$_G
 $sqlQuery .= "WHERE a.property_photo = b.photo_id AND a.property_status ='".$_GET['second']."' AND a.property_type='".$_GET['first']."'";
 }
 
-
 $result = mysql_query( $sqlQuery);
-
 
 if ($result) {
 	$htmlString = "";

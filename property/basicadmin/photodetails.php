@@ -1,4 +1,7 @@
 <?php
+/*
+ * Display the photo details from passed photo_id number
+ */
 session_start();
 
 /*
@@ -33,7 +36,7 @@ include (TEMPLATE_PATH . "/header.html");
 <h1>Photo Detail</h1>
 </div>
 </div>
-<div clas="row">
+<div class="row">
 <div class="span9">
 
 <?php 

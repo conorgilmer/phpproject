@@ -1,4 +1,8 @@
 <?php
+/*
+ * Display the uploaded photos
+ */
+
 session_start();
 
 /*
@@ -46,7 +50,7 @@ $result = mysql_query($sqlQuery);
 if ($result) {
 	$htmlString = "";
 
-	$counter =0;
+	$counter =0; // for funky bit of modular math for 3 photos per row
         $htmlString = "
             <div class=\"row\">";
        
@@ -66,22 +70,16 @@ if ($result) {
     </div>
   </div>";
 
-	//	$htmlString .=  "<a href=\"showphoto.php?photo_id=".$product["photo_id"]." \">". $product['photo_id']."</a>";
-	//	$htmlString .=  $product["file_name"];
-	//	$htmlString .=  $product["prop_id"];
-	
 		$htmlString .=  "</tr>\n";
 		if (($counter % 3) ==0) {
-                    $htmlString.= " </div> <div class=\"row\">";
-                }
+                    $htmlString.= " </div> <div class=\"row\">"; //effectively carriage return
+                } // if
 	
                 
-                }
+                } // while
 	$htmlString .=  "</div>";
 	
 	echo $htmlString ;
-	
-	
 	
 } else {
 	

@@ -1,4 +1,7 @@
 <?php
+/*
+ * List of the Contact details for the Real Estate Agents
+ */
 session_start();
 
 /*

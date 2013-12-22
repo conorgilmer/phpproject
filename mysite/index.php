@@ -1,6 +1,6 @@
       
-<?php include 'header.php'; ?>
-<?php include 'navbar.php'; ?>
+<?php include 'includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
 
 <div class="jumbotron">
@@ -8,4 +8,4 @@
         <p class="lead">This is a small website to show basic templating.</p>
         <p class="lead">It uses a php and bootstrap, with a header, navigation and footer as common elements which are imported into each page..</p>
       </div>
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

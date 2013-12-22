@@ -1,4 +1,7 @@
 <?php
+/*
+ * Home page of the admin area should just show a list of properties
+ */
 session_start();
 
 /*

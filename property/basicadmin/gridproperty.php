@@ -1,4 +1,7 @@
 <?php
+/*
+ * Display a the properties in a grid 3 houses per row
+ */
 session_start();
 
 /*
@@ -37,7 +40,7 @@ include (TEMPLATE_PATH . "/header.html");
 <div class="span9">
 
 <?php 
-
+// cross join
 $sqlQuery = "SELECT a.property_addr1,
                     a.property_addr2,
                     a.property_addr3,
@@ -61,7 +64,7 @@ $result = mysql_query($sqlQuery);
 if ($result) {
     	$htmlString = "";
 
-	$counter =0;
+	$counter =0; //modulo division allows 3 houses per row
         $htmlString = "
             <div class=\"row\">";
        
@@ -86,23 +89,17 @@ if ($result) {
       $htmlString.="</div>
     </div>
   </div>";
-
-	//	$htmlString .=  "<a href=\"showphoto.php?photo_id=".$product["photo_id"]." \">". $product['photo_id']."</a>";
-	//	$htmlString .=  $product["file_name"];
-	//	$htmlString .=  $product["prop_id"];
-	
+      
 		$htmlString .=  "</tr>\n";
 		if (($counter % 3) ==0) {
-                    $htmlString.= " </div> <div class=\"row\">";
-                }
+                    $htmlString.= " </div> <div class=\"row\">"; // carriage return new line on grid!
+                } // if
 	
                 
-                }
+                } // While
 	$htmlString .=  "</div>";
 	
 	echo $htmlString ;
-	
-	
 	
 } else {
 	

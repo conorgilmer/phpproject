@@ -1,6 +1,6 @@
       
-<?php include 'header.php'; ?>
-<?php include 'navbar.php'; ?>
+<?php include 'includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
 
 <div class="jumbotron">
@@ -13,4 +13,4 @@
 <li align="left"> Amateur Radio - Call Sign ei5gabs </li>
 </ul></p>
       </div>
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

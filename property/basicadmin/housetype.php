@@ -1,4 +1,7 @@
 <?php
+/* 
+ * List of Accomodation Types on the site
+ */
 session_start();
 
 /*
@@ -50,7 +53,7 @@ if ($result) {
 	$htmlString .= "<tr>";
 	$htmlString .= "<th>ID</th>";
 	$htmlString .= "<th>House Type</th>";
-	$htmlString .= "<th colspan='2'>Actions</th>";
+//	$htmlString .= "<th colspan='2'>Actions</th>";
 
 	$htmlString .= "</tr>";
 	
@@ -64,15 +67,15 @@ if ($result) {
 		$htmlString .=  $product["housetype_name"];
 		$htmlString .=  "</td>";
 		
-		
+/*	Going to stick with the house types for now	
 		$htmlString .=  "<td>";
-		$htmlString .=  output_edit_link($product["housetype_id"]);
+		$htmlString .=  output_edit_ht_link($product["housetype_id"]);
 		$htmlString .=  "</td>";
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_delete_link($product["housetype_id"]);
+		$htmlString .=  output_delete_ht_link($product["housetype_id"]);
 		$htmlString .=  "</td>";
-		
+*/		
 		
 		
 		$htmlString .=  "</tr>\n";
@@ -80,9 +83,7 @@ if ($result) {
 	}
 	$htmlString .=  "</table>\n";
 	
-	echo $htmlString ;
-	
-	
+	echo $htmlString ;	
 	
 } else {
 	
@@ -93,7 +94,6 @@ if ($result) {
 <div class="span3"></div>
 
 </div>
-
 
 </div> <!-- /container -->
 <?php 

@@ -1,12 +1,12 @@
       
-<?php include 'header.php'; ?>
-<?php include 'navbar.php'; ?>
+<?php include 'includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
 
 <div class="jumbotron">
         <h2>Contact</h2>
-        <p class="lead">email: conor.gilmer@gmail.com.</p>
-        <p class="lead">skype: conor.gilmer>
-        <p class="lead">twitter: twitter.com/conorgilmer</p>
+        <p class="lead">email:<a href="mailto:conor.gilmer@gmail.com">conor.gilmer@gmail.com</a></p>
+        <p class="lead">skype: conor.gilmer </p>
+        <p class="lead">twitter: <a target="_blank" href="http://www.twitter.com/conorgilmer">twitter.com/conorgilmer</a> </p>
       </div>
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

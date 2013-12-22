@@ -1,6 +1,6 @@
      
-<?php include 'header.php'; ?>
-<?php include 'navbar.php'; ?>
+<?php include 'includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
 <div class="jumbotron">
 <h2>Webelevate 2.1</h2>
@@ -21,4 +21,4 @@
 
 
   </div>
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
