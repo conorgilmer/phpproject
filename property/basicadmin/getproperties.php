@@ -26,15 +26,37 @@ include (APPLICATION_PATH . "/inc/functions.inc.php");
 //mysql_select_db($con,DB_DATABASE);
 
 // using a cross join
-$sqlQuery = "select * from property a, photos b  ";
-if($_GET['first'] != "" && $_GET['second'] == ""){
+//$sqlQuery = "select * from property a, photos b  ";
+/*if($_GET['first'] != "" && $_GET['second'] == ""){
 $sqlQuery .= "WHERE a.property_photo = b.photo_id AND  a.property_type='".$_GET['first']."'";
 }elseif($_GET['first'] == "" && $_GET['second']!= ""){
 $sqlQuery .= "WHERE  a.property_photo = b.photo_id AND a.property_status ='".$_GET['second']."'";
 }elseif($_GET['first'] != "" && $_GET['second'] != ""){
 $sqlQuery .= "WHERE a.property_photo = b.photo_id AND a.property_status ='".$_GET['second']."' AND a.property_type='".$_GET['first']."'";
-}
+}*/
+echo "in get first ". $_GET['first'] ." get 2nd ".$_GET['second']." get trio ". $_GET['third'];
+echo "<br>low " . $_GET['min'];
+echo "<br>high " . $_GET['max'];
 
+
+$sqlQuery = "select * from property a, photos b WHERE a.property_photo = b.photo_id ";
+if($_GET['first'] == "")
+    $sqlfirst =""; 
+else 
+    $sqlfirst ="and a.property_type='".$_GET['first'] . "' ";
+if($_GET['second'] == "")
+    $sqlsecond =""; 
+else 
+    $sqlsecond ="and a.property_status='".$_GET['second'] . "' ";
+
+if($_GET['third'] == "")
+    $sqlthird =""; 
+else 
+    $sqlthird ="and a.property_county='".$_GET['third'] . "' ";
+
+
+$sqlQuery .= $sqlfirst . $sqlsecond . $sqlthird; 
+echo " sql = " . $sqlQuery;
 $result = mysql_query( $sqlQuery);
 
 if ($result) {
@@ -79,7 +101,7 @@ if ($result) {
 		$htmlString .=  "</td>";
                 
 		$htmlString .=  "<td>";
-		$htmlString .=  $product["property_price"];
+		$htmlString .=  "&euro; " .$product["property_price"];
 		$htmlString .=  "</td>";
 		$htmlString .=  "<td>";
 		$htmlString .=  $product["property_status"];

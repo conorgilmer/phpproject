@@ -15,21 +15,21 @@
 		value="<?php echo $product['property_id']; ?>" />
        
 	<div class="control-group">
-		<label class="control-label" for="inputaddr1">Address 1</label>
+		<label class="control-label" for="inputaddr1">Address Line 1 *</label>
 		<div class="controls">
 			<input type="text" id="inputaddr1" name="addr1"
 				placeholder="Addr1" value="<?php echo $product['property_addr1']; ?>">
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="inputaddr2">Address 2</label>
+		<label class="control-label" for="inputaddr2">Address Line 2</label>
 		<div class="controls">
 			<input type="text" id="inputaddr2" name="addr2"
 				placeholder="Addr2" value="<?php echo $product['property_addr2']; ?>">
 		</div>
 	</div>
         	<div class="control-group">
-		<label class="control-label" for="inputaddr3">Address 3</label>
+		<label class="control-label" for="inputaddr3">Address Line 3</label>
 		<div class="controls">
 			<input type="text" id="inputaddr3" name="addr3"
 				placeholder="Addr1" value="<?php echo $product['property_addr3']; ?>">
@@ -64,24 +64,31 @@
 				}
 
 
-echo uihelperSelect('housetype_id',$arrayItems,$product['property_type']) ?>
+echo uihelperSelect('housetype_id',$arrayItems,$product['housetype_id']) ?>
 		</div>
 	</div>
+
+
         
         <div class="control-group">
 		<label class="control-label" for="County">County</label>
 		<div class="controls">
-		<?php 
-                $records = counties_get_all();
-            	$product['county_id'] = 0;
-		$arrayItems1=array();
-                $count = sizeof($records);
-		for($i=0; $i < $count; $i++) {
-                    $arrayItems1[$i]["label"]=$records[$i]['county_name'];
-                    $arrayItems1[$i]["id"]=$records[$i]['county_id'];	
-		}
+			<?php 
+				$records = counties_get_all();
+	$product['county_id'] = 0;
+				$arrayItems1=array();
 
-        echo uihelperSelect('county_id',$arrayItems1,$product['property_county']) ?>
+				$count = sizeof($records);
+				for($i=0; $i < $count; $i++) {
+
+				$arrayItems1[$i]["label"]=$records[$i]['county_name'];
+				$arrayItems1[$i]["id"]=$records[$i]['county_id'];
+	
+
+				}
+
+
+echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
 		</div>
 	</div>
 
@@ -122,9 +129,9 @@ echo uihelperSelect('housetype_id',$arrayItems,$product['property_type']) ?>
     
         
         <div class="control-group">
-		<label class="control-label" for="inputprice">Price</label>
+		<label class="control-label" for="inputprice">Price*</label>
 		<div class="controls">
-			<input type="text" id="inputprice" name="price"
+                    &euro;<input type="text" id="inputprice" name="price"
 				placeholder="Price" value="<?php echo $product['property_price']; ?>">
 		</div>
 	</div>
@@ -147,7 +154,7 @@ echo uihelperSelect('housetype_id',$arrayItems,$product['property_type']) ?>
 				}
 
 
-echo uihelperSelect('photo_id',$arrayItems1,$product['property_photo']) ?>
+echo uihelperSelect('photo_id',$arrayItems1,$product['photo_id']) ?>
 		</div>
 	</div>        
         
@@ -169,7 +176,7 @@ echo uihelperSelect('photo_id',$arrayItems1,$product['property_photo']) ?>
 				}
 
 
-echo uihelperSelect('contact_id',$arrayItems1,$product['property_contact']) ?>
+echo uihelperSelect('contact_id',$arrayItems1,$product['contact_id']) ?>
 		</div>
 	</div>
 
@@ -178,7 +185,8 @@ echo uihelperSelect('contact_id',$arrayItems1,$product['property_contact']) ?>
         <div class="control-group">
 		<div class="controls">
 
-			
+		
+		*	Mandatory Fields.<br>
 		</div>
         </div>
         
@@ -190,6 +198,8 @@ echo uihelperSelect('contact_id',$arrayItems1,$product['property_contact']) ?>
 			</button>
 		</div>
         </div>
+        
+       
 </form>
 
     </div>

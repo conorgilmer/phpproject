@@ -88,6 +88,21 @@ session_start();
            
             break;
        
+           case 'delete':
+            
+            $record_id = $_GET['id'];
+            $dbTable = new Zend_Db_Table('property');
+           // die ("before here");
+//            $row = $dbTable->fetchRow('contact_id = ' . $record_id);
+            $dbTable->delete('property', 'property_id =' . $record_id);
+  //          $smarty->assign('row',$row);
+           die ("in here");
+            $smarty->assign('page','listproperties.tpl');
+            $smarty->assign('pageTitle','list prop Details');
+           
+            break;
+       
+        
         case 'editphoto':
             
             $record_id = $_GET['id'];

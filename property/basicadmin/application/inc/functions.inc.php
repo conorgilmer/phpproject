@@ -6,6 +6,10 @@
 */
 defined('MY_APP') or die('Restricted access');
 
+function isCurrency($number)
+{ //ah yes regular expressions!!
+  return preg_match("/^-?[0-9]+(?:\.[0-9]{1,2})?$/", $number);
+}
 
 //basic validation to snsure a filed is entered in address line one
 function validateProperty ($property) {
@@ -15,8 +19,12 @@ function validateProperty ($property) {
     
     if (empty($field))
         return false;
-    else 
+    else
+    { if (!isCurrency($property['property_price']))
+        return false;
+    else
         return true;
+}
 }
 
 // basic validation insureing contant name is entered

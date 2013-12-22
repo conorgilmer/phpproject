@@ -1,7 +1,7 @@
   <hr>
 
       <footer>
-        <p>&copy; {$name}</p>
+        <p>&copy; {$name} we 2.1</p>
       </footer>
     </div> <!-- /container -->  
 

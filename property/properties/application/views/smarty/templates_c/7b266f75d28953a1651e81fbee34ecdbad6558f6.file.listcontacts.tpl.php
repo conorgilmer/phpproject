@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2013-12-17 16:03:25
+<?php /* Smarty version Smarty-3.1.15, created on 2013-12-22 05:11:27
          compiled from "/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/listcontacts.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:191763057052add4750febe6-03059033%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7b266f75d28953a1651e81fbee34ecdbad6558f6' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/phpproject/property/properties/application/views/smarty/templates/listcontacts.tpl',
-      1 => 1387292522,
+      1 => 1387685483,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class='col-md-10'> 
         
       <table class="table table-striped">
-          <tr><th>ID</th> <th>Name</th><th>Phone Number</th> <th span cols="2">Actions</th></tr>
+          <tr><th>ID</th> <th>Name</th><th>Phone Number</th> <th>Email</th><!--<th span cols="2">Actions</th>--></tr>
           
 <?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['rows']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -46,14 +46,16 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 </td>
         <td><?php echo $_smarty_tpl->tpl_vars['row']->value['contact_phone_no'];?>
 </td>
-        
-        <td><a class="btn btn-default" href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
+        <td><?php echo $_smarty_tpl->tpl_vars['row']->value['contact_email'];?>
+</td>        
+        <!--<td><a class="btn btn-default" href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
 =editcontact&id=<?php echo $_smarty_tpl->tpl_vars['row']->value['contact_id'];?>
 ">Edit</a><td>
         <td><a class="btn btn-default" href="<?php echo $_smarty_tpl->tpl_vars['urlAction']->value;?>
 =delete&id=<?php echo $_smarty_tpl->tpl_vars['row']->value['contact_id'];?>
 ">Delete</a><td>
-    </tr>
+  -->
+        </tr>
 <?php } ?>
 </table>
         

@@ -80,9 +80,9 @@ if ($result) {
         $htmlString.="<p><strong>Address</strong>".$product["property_addr1"]."<br>";
         $htmlString.= $product["property_addr2"]."<br>";
         $htmlString.= $product["property_addr3"]."</p>";
-        $htmlString.="<p><strong>County</strong> ".$product["property_county"]."</p>";
-        $htmlString.="<p><strong>Status</strong>".$product["property_status"]."</p>";
-        $htmlString.="<p><strong>Price </strong>".$product["property_price"]."</p>";
+        $htmlString.="<p><strong>County </strong> ".getCounty($product["property_county"])."</p>";
+        $htmlString.="<p><strong>Status </strong>".$product["property_status"]."</p>";
+        $htmlString.="<p><strong>Price &euro; </strong>".$product["property_price"]."</p>";
         
         $htmlString.="<p><a href=\"propertydetails.php?property_id=".$product['property_id']."\" class=\"btn btn-primary\" role=\"button\">Property Details</a> </p>";
     //        <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>";
