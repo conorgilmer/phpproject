@@ -34,9 +34,9 @@ $sqlQuery .= "WHERE  a.property_photo = b.photo_id AND a.property_status ='".$_G
 }elseif($_GET['first'] != "" && $_GET['second'] != ""){
 $sqlQuery .= "WHERE a.property_photo = b.photo_id AND a.property_status ='".$_GET['second']."' AND a.property_type='".$_GET['first']."'";
 }*/
-echo "in get first ". $_GET['first'] ." get 2nd ".$_GET['second']." get trio ". $_GET['third'];
-echo "<br>low " . $_GET['min'];
-echo "<br>high " . $_GET['max'];
+//echo "in get first ". $_GET['first'] ." get 2nd ".$_GET['second']." get trio ". $_GET['third'];
+//echo "<br>low " . $_GET['min'];
+//echo "<br>high " . $_GET['max'];
 
 
 $sqlQuery = "select * from property a, photos b WHERE a.property_photo = b.photo_id ";
