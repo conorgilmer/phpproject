@@ -1,0 +1,112 @@
+
+<?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">�</button>
+	<strong>Message</strong>
+	<?php echo $flashMessage ?>
+</div>
+
+<?php endif;  ?>
+<form class="form-horizontal" method="post" action="insert.php" enctype="multipart/form-data" >
+	<input type="hidden" name="movie_id"
+		value="<?php echo $movie['movie_id']; ?>" />
+	<div class="control-group">
+		<label class="control-label" for="inputMovieTitle">Title</label>
+		<div class="controls">
+			<input type="text" id="inputMovieTitle" name="title"
+				placeholder="Title" value="<?php echo $movie['title']; ?>">
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="inputMovieTitle">Description</label>
+		<div class="controls">
+			<textarea name="description">
+  <?php echo $movie['description']; ?>
+  
+  </textarea>
+		</div>
+	</div>
+
+
+	<div class="control-group">
+		<label class="control-label" for="inputMovieRunningTime">Running
+			Time</label>
+		<div class="controls">
+			<input type="text" id="inputMovieRunningTime" name="runningtime"
+				placeholder="Running Time"
+				value="<?php echo $movie['runningtime']; ?>">
+		</div>
+	</div>
+
+
+	<div class="control-group">
+		<label class="control-label" for="inputMovieTitle">Cinema</label>
+		<div class="controls">
+			<?php 
+				$records = cinemas_get_all();
+	
+				$arrayItems=array();
+
+				$count = sizeof($records);
+				for($i=0; $i < $count; $i++) {
+
+				$arrayItems[$i]["label"]=$records[$i]['cinema_title'];
+				$arrayItems[$i]["id"]=$records[$i]['cinema_id'];
+	
+
+				}
+
+
+echo uihelperSelect('cinema_id',$arrayItems,$movie['cinema_id']) ?>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="control-group">
+		<label class="control-label" for="inputMovieTitle">Rating</label>
+		<div class="controls">
+			<select id="rating" name="rating">
+				<option value="G"<?php echo
+					output_selected($movie['rating'],'G') ?>>G</option>
+				<option value="PG"<?php echo
+					output_selected($movie['rating'],'PG') ?>>PG</option>
+				<option value="12A"<?php echo
+					output_selected($movie['rating'],'12A') ?>>12A</option>
+				<option value="15A"<?php echo
+					output_selected($movie['rating'],'15A') ?>>15A</option>
+				<option value="16"<?php echo
+					output_selected($movie['rating'],'16') ?>>16</option>
+				<option value="18"<?php echo
+					output_selected($movie['rating'],'18') ?> >18</option>
+
+			</select>
+		</div>
+	</div>
+
+
+<!--  note, you cannot style file upload button, but folllowinglink is useful -->
+<!--  http://www.quirksmode.org/dom/inputfile.html -->
+
+	<div class="control-group">
+	<label class="control-label" for="inputMovieTitle">Upload Image</label>
+		<div class="controls">
+
+			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+<input name="uploadedfile" type="file" />
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+
+			<button type="submit" class="btn">
+				<?php echo $buttonLabel ?>
+			</button>
+		</div>
+	</div>
+</form>
+
+

@@ -1,0 +1,80 @@
+
+<?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert"></button>
+	<strong>Message</strong>
+	<?php echo $flashMessage ?>
+</div>
+
+<?php endif;  ?>
+<div class="container">
+  <div class="row">
+    <div class="offset4 span4">
+
+<form class="form-horizontal" method="post" action="insertphoto.php" enctype="multipart/form-data" >
+	<input type="hidden" name="photo_id"
+		value="<?php echo $photo['photo_id']; ?>" />
+	<div class="control-group">
+		<label class="control-label" for="inputphotoTitle">Title: </label>
+		<div class="controls">
+			<input type="text" id="inputphotoTitle" name="title"
+                               placeholder="Title" value="<?php echo $photo['title']; ?>">
+		</div>
+	</div>
+        <div class="control-group">
+	<label class="control-label" for="inputphotoTitle">Upload Image: </label>
+		<div class="controls">
+
+			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+<input name="file" type="file" />
+		</div>
+	</div>
+        
+                <div class="control-group">
+		<label class="control-label" for="inputpictureplace">Property: </label>
+		<div class="controls">
+		<?php 
+			$records = properties_get_all();
+                        $arrayItems1=array();
+
+			$count = sizeof($records);
+			for($i=0; $i < $count; $i++) {
+
+				$arrayItems1[$i]["label"]=$records[$i]['property_addr1'];
+				$arrayItems1[$i]["id"]=$records[$i]['property_id'];	
+
+				}
+                    echo uihelperSelect('property_id',$arrayItems1,$photo['prop_id']) ?>
+		</div>
+	</div>
+        
+        
+        
+
+	<div class="control-group">
+		<div class="controls">
+
+			<button type="submit" class="btn">
+				<?php echo $buttonLabel ?>
+			</button>
+		</div>
+	</div>
+</form>
+    </div>
+  </div>
+</div>
+
+<!--form action="<?=$PHP_SELF;?>" method="POST" enctype="multipart/form-data" name="upload_form" id="upload_form">
+    <label>Title:</label><input name="title" type="text" id="title" value="<?=htmlentities(stripslashes($_POST['title']));?>" size="35">
+    <label>File:</label><input type="file" name="file">    
+    <input name="action" type="hidden" id="action" value="add_document">
+</form>
+
+<div class="control-group">
+	<label class="control-label" for="inputproductTitle">Upload Image</label>
+		<div class="controls">
+
+			<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+<input name="uploadedfile" type="file" />
+		</div>
+	</div-->

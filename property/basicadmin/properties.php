@@ -14,7 +14,7 @@ define ( "MY_APP", 1 );
 define ( "APPLICATION_PATH", "application" );
 define ( "TEMPLATE_PATH", APPLICATION_PATH . "/view" );
 
-//include_once(APPLICATION_PATH . "/inc/session.inc.php");
+include_once(APPLICATION_PATH . "/inc/session.inc.php");
 
 
 /*
@@ -27,7 +27,7 @@ include (APPLICATION_PATH . "/inc/functions.inc.php");
 //Set up variable so 'active' class set on navbar link
 $activeHome = "active";
 
-include (TEMPLATE_PATH . "/public/header.html");
+include (TEMPLATE_PATH . "/header.html");
 
 ?>
 <div class="container">
@@ -49,6 +49,7 @@ $sqlQuery = "SELECT a.property_addr1,
                     a.property_size,
                     a.property_type,
                     a.property_status,
+                       a.property_desc,
                     a.property_id,
                     b.file_content,
                     b.file_type,
@@ -81,8 +82,11 @@ if ($result) {
       
         $htmlString.="<h4 class=\"media-heading\"><strong>Address:  </strong>".$product["property_addr1"].", ";
         $htmlString.= $product["property_addr2"].", ";
-        $htmlString.= $product["property_addr3"]."</h4>";
-        $htmlString.="<p><strong>County </strong> ".getCounty($product["property_county"])."</p>";
+        $htmlString.= $product["property_addr3"].
+                ", <strong>County </strong> ".getCounty($product["property_county"])."</h4>";
+        $htmlString.="<p><strong>Type </strong>". getHouseType($product["property_type"])."</p>";
+       $htmlString.="<p><strong>Description </strong>".$product["property_desc"]."</p>";
+       
         $htmlString.="<p><strong>Status </strong>".$product["property_status"]."</p>";
         $htmlString.="<p><strong>Price &euro; </strong>".$product["property_price"]."</p>";
         
@@ -112,5 +116,5 @@ if ($result) {
 
 </div> <!-- /container -->
 <?php 
-include (TEMPLATE_PATH . "/public/footer.html");
+include (TEMPLATE_PATH . "/footer.html");
 ?>

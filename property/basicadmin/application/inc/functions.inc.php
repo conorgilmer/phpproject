@@ -12,14 +12,27 @@ function isCurrency($number)
 }
 
 //basic validation to snsure a filed is entered in address line one
+// county housetype agent and photo selected
 function validateProperty ($property) {
-    $field = $property['property_addr1'];
-   // print_r($field);
-   // print_r($property);
-    
-    if (empty($field))
+    $addr = $property['property_addr1'];
+    $county = $property['property_county'];
+    $housetype = $property['property_type'];
+    $agent = $property['property_contact'];
+    $photo = $property['property_photo'];
+  
+    if (empty($addr))
         return false;
-    else
+    elseif (empty($county))
+        return false;
+    elseif (empty($housetype))
+        return false;
+    
+    elseif (empty($photo))
+        return false;
+    
+    elseif (empty($agent))
+        return false;
+    else 
     { if (!isCurrency($property['property_price']))
         return false;
     else
@@ -228,11 +241,23 @@ function deleteProperty($id) {
         }
 }
 
-
 // delete product 
 function deletePhoto($id) {
     $pID = (int) $id;
     $sqlQuery = "DELETE FROM photos where photo_id = $pID";
+    
+    $result = mysql_query($sqlQuery);
+    if (!$result) {
+		die("error" . mysql_error());
+        }
+}
+
+
+// delete product 
+function soldProperty($id) {
+    $pID = (int) $id;
+    $sold = "Sold";
+    $sqlQuery = "Update property set property_status = 'sold' where property_id = $pID";
     
     $result = mysql_query($sqlQuery);
     if (!$result) {
@@ -295,6 +320,12 @@ function output_edit_link($id) {
 function output_delete_link($id) {
 
 	return "<a href='delete.php?id=$id'>Delete</a>";
+
+}
+
+function output_marksold_link($id) {
+
+	return "<a href='marksold.php?id=$id'>Complete Sale</a>";
 
 }
 

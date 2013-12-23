@@ -6,6 +6,8 @@ function uihelperSelect($selectID, $arrayItems, $selectedItem = "") {
 	
 
 	$htmlString = "<select id='$selectID' name='$selectID'>";
+        $htmlString .= "<option value=''></option>";
+	
 	foreach($arrayItems as $option) {
 		
 		$optionLabel = $option["label"];

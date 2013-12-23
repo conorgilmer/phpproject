@@ -54,6 +54,7 @@ $sqlQuery = "SELECT a.property_addr1,
                     a.property_id,
                     a.property_contact,
                     a.property_desc,
+                    a.property_ts,
                     b.file_content,
                     b.file_type,
                     b.file_size,
@@ -93,6 +94,8 @@ if ($result) {
         $htmlString.="<p><strong>County: </strong>". getCounty($product["property_county"])."</p>";
         $htmlString.="<p><strong>Description </strong>".$product["property_desc"]."</p>";
         $htmlString.="<p><strong>Price : &euro;</strong>".$product["property_price"]."</p>";
+         $dateposted = date('d-m-Y',strtotime($product['property_ts']));
+        $htmlString.="<p><strong>Date Posted: </strong> ". $dateposted . "</p>";
             $htmlString.="</div>
     </div>
   </div>";

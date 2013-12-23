@@ -55,7 +55,7 @@ if ($result) {
 	$htmlString .= "<th>Type</th>";
         	$htmlString .= "<th>Price</th>";
                 	$htmlString .= "<th>Status</th>";
-	$htmlString .= "<th colspan='2'>Actions</th>";
+	$htmlString .= "<th colspan='3'>Actions</th>";
 
 	$htmlString .= "</tr>";
 	
@@ -104,7 +104,9 @@ if ($result) {
 		$htmlString .=  "<td>";
 		$htmlString .=  output_delete_link($product["property_id"]);
 		$htmlString .=  "</td>";
-		
+		$htmlString .=  "<td>";
+		$htmlString .=  output_marksold_link($product["property_id"]);
+		$htmlString .=  "</td>";
 		
 		
 		$htmlString .=  "</tr>\n";

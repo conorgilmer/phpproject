@@ -1,4 +1,4 @@
-
+<!-- validated in js/validation.js -->
 <?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
 <div class="alert">
 	<button type="button" class="close" data-dismiss="alert"></button>
@@ -10,7 +10,7 @@
 <div class="container">
   <div class="row">
     <div class="offset4 span4">
-<form class="form-horizontal" method="post" action="insert.php" enctype="multipart/form-data" >
+<form class="form-horizontal" method="post" name="propform" onsubmit="return validateForm()"  action="insert.php" enctype="multipart/form-data" >
 	<input type="hidden" name="property_id"
 		value="<?php echo $product['property_id']; ?>" />
        
@@ -45,9 +45,30 @@
 		</div>
         </div-->
 
+          <div class="control-group">
+		<label class="control-label" for="County">County *</label>
+		<div class="controls">
+			<?php 
+				$records = counties_get_all();
+	$product['county_id'] = 0;
+				$arrayItems1=array();
+
+				$count = sizeof($records);
+				for($i=0; $i < $count; $i++) {
+
+				$arrayItems1[$i]["label"]=$records[$i]['county_name'];
+				$arrayItems1[$i]["id"]=$records[$i]['county_id'];
+	
+
+				}
+
+
+echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
+		</div>
+	</div>
         
 	<div class="control-group">
-		<label class="control-label" for="inputcounty">House Type</label>
+		<label class="control-label" for="inputht">House Type *</label>
 		<div class="controls">
 			<?php 
 				$records = housetype_get_all();
@@ -70,27 +91,7 @@ echo uihelperSelect('housetype_id',$arrayItems,$product['housetype_id']) ?>
 
 
         
-        <div class="control-group">
-		<label class="control-label" for="County">County</label>
-		<div class="controls">
-			<?php 
-				$records = counties_get_all();
-	$product['county_id'] = 0;
-				$arrayItems1=array();
-
-				$count = sizeof($records);
-				for($i=0; $i < $count; $i++) {
-
-				$arrayItems1[$i]["label"]=$records[$i]['county_name'];
-				$arrayItems1[$i]["id"]=$records[$i]['county_id'];
-	
-
-				}
-
-
-echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
-		</div>
-	</div>
+      
 
             	<div class="control-group">
 		<label class="control-label" for="desc">Description</label>
@@ -129,7 +130,7 @@ echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
     
         
         <div class="control-group">
-		<label class="control-label" for="inputprice">Price*</label>
+		<label class="control-label" for="inputprice">Price *</label>
 		<div class="controls">
                     &euro;<input type="text" id="inputprice" name="price"
 				placeholder="Price" value="<?php echo $product['property_price']; ?>">
@@ -137,7 +138,7 @@ echo uihelperSelect('county_id',$arrayItems1,$product['county_id']) ?>
 	</div>
 	
         <div class="control-group">
-		<label class="control-label" for="inputproductCountry">Photo</label>
+		<label class="control-label" for="inputproductCountry">Photo *</label>
 		<div class="controls">
 			<?php 
 				$records = photos_get_all();
@@ -159,7 +160,7 @@ echo uihelperSelect('photo_id',$arrayItems1,$product['photo_id']) ?>
 	</div>        
         
         <div class="control-group">
-		<label class="control-label" for="inputproductCountry">Agent</label>
+		<label class="control-label" for="inputproductCountry">Agent *</label>
 		<div class="controls">
 			<?php 
 				$records = contacts_get_all();

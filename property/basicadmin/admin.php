@@ -1,6 +1,6 @@
 <?php
 /*
- * Home page of the admin area should just show a list of properties
+ * Display a the properties in a grid 3 houses per row
  */
 session_start();
 
@@ -40,7 +40,7 @@ include (TEMPLATE_PATH . "/header.html");
 <div class="span9">
 
 <?php 
-
+// cross join
 $sqlQuery = "SELECT a.property_addr1,
                     a.property_addr2,
                     a.property_addr3,
@@ -49,7 +49,10 @@ $sqlQuery = "SELECT a.property_addr1,
                     a.property_size,
                     a.property_type,
                     a.property_status,
+                    a.property_desc,
                     a.property_id,
+                    a.property_ts,
+                    a.property_date_created,
                     b.file_content,
                     b.file_type,
                     b.file_size,
@@ -64,7 +67,7 @@ $result = mysql_query($sqlQuery);
 if ($result) {
     	$htmlString = "";
 
-	$counter =0;
+	$counter =0; //modulo division allows 3 houses per row
         $htmlString = "
             <div class=\"row\">";
        
@@ -77,35 +80,33 @@ if ($result) {
            base64_encode( $product['file_content'] ) . "\" />";
       $htmlString .="<div class=\"caption\">";
       //  $htmlString.="<h3>".$product["file_name"]."</h3>";
-        $htmlString.="<p>".$product["property_addr1"]."<br>";
+        $htmlString.="<p><strong>Address</strong>".$product["property_addr1"]."<br>";
         $htmlString.= $product["property_addr2"]."<br>";
         $htmlString.= $product["property_addr3"]."</p>";
-        $htmlString.="<p>".$product["title"]."</p>";
-        $htmlString.="<p>".$product["property_status"]."</p>";
-        $htmlString.="<p>Price ".$product["property_price"]."</p>";
-        
+        $htmlString.="<p><strong>County </strong> ".getCounty($product["property_county"])."</p>";
+        $htmlString.="<p><strong>Description </strong>".$product["property_desc"]."</p>";
+        $htmlString.="<p><strong>Status </strong>".$product["property_status"]."</p>";
+        $htmlString.="<p><strong>Price &euro; </strong>".$product["property_price"]."</p>";
+         $dateposted = date('d-m-Y',strtotime($product['property_ts']));
+        $htmlString.="<p><strong>Date Edited: </strong> ". $dateposted . "</p>";
+         $datecreated = date('d-m-Y',strtotime($product['property_date_created']));
+        $htmlString.="<p><strong>Date Posted: </strong> ". $datecreated . "</p>";
         $htmlString.="<p><a href=\"propertydetails.php?property_id=".$product['property_id']."\" class=\"btn btn-primary\" role=\"button\">Property Details</a> </p>";
     //        <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>";
       $htmlString.="</div>
     </div>
   </div>";
-
-	//	$htmlString .=  "<a href=\"showphoto.php?photo_id=".$product["photo_id"]." \">". $product['photo_id']."</a>";
-	//	$htmlString .=  $product["file_name"];
-	//	$htmlString .=  $product["prop_id"];
-	
+      
 		$htmlString .=  "</tr>\n";
 		if (($counter % 3) ==0) {
-                    $htmlString.= " </div> <div class=\"row\">";
-                }
+                    $htmlString.= " </div> <div class=\"row\">"; // carriage return new line on grid!
+                } // if
 	
                 
-                }
+                } // While
 	$htmlString .=  "</div>";
 	
 	echo $htmlString ;
-	
-	
 	
 } else {
 	

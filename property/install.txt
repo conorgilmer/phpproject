@@ -1,0 +1,37 @@
+Instalation of Property App
+===========================
+Conor Gilmer
+
+To install my app locally you require two files property.sql and property.zip
+
+Setup Database
+--------------
+Create a database called property
+in phpmyadmin or another admin tool
+import in the property.sql file
+
+Deploy Code
+------------
+unzip the property.zip file onto an apache server
+depending on your login details for your server you may have to change the userid and password of applications/inc/config.inc.php
+For  XAMPP user id is root and password is ""
+for MAMP user is root and password is root
+
+Navigate to 
+localhost/property/basicadmin/index.php
+
+Tables
+-----
+There are 
+Property
+Photos
+Contact
+Counties
+Housetype
+Status
+Adminusers
+
+Comments
+--------
+One thing about this which if i was re-doing it i would change is the storage of files, i have stored them within a database table which i believe is not the most efficient and so storing files in a directory (like the broken app) would have been preferable.
+If i had more time I would have used a framework such as zend or another I had started a Zend version but didn't complete it

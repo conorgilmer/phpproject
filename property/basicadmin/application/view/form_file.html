@@ -11,7 +11,8 @@
   <div class="row">
     <div class="offset4 span4">
 
-<form class="form-horizontal" method="post" action="insertphoto.php" enctype="multipart/form-data" >
+<form class="form-horizontal" method="post" action="insertphoto.php" name="uploadform" 
+      onsubmit="return validateFileForm()" enctype="multipart/form-data" >
 	<input type="hidden" name="photo_id"
 		value="<?php echo $photo['photo_id']; ?>" />
 	<div class="control-group">
@@ -36,7 +37,7 @@
 		<?php 
 			$records = properties_get_all();
                         $arrayItems1=array();
-
+                         $photo["prop_id"] =0;
 			$count = sizeof($records);
 			for($i=0; $i < $count; $i++) {
 
@@ -44,7 +45,7 @@
 				$arrayItems1[$i]["id"]=$records[$i]['property_id'];	
 
 				}
-                    echo uihelperSelect('property_id',$arrayItems1,$photo['prop_id']) ?>
+                    echo uihelperSelect('prop_id',$arrayItems1,$photo['prop_id']) ?>
 		</div>
 	</div>
         
