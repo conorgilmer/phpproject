@@ -78,7 +78,7 @@ if ($result) {
            base64_encode( $product['file_content'] ) . "\" />";
       $htmlString .="<div class=\"caption\">";
       //  $htmlString.="<h3>".$product["file_name"]."</h3>";
-        $htmlString.="<p><strong>Address</strong>".$product["property_addr1"]."<br>";
+        $htmlString.="<p><strong>Address </strong>".$product["property_addr1"]."<br>";
         $htmlString.= $product["property_addr2"]."<br>";
         $htmlString.= $product["property_addr3"]."</p>";
         $htmlString.="<p><strong>County </strong> ".getCounty($product["property_county"])."</p>";
